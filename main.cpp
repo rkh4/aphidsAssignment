@@ -21,7 +21,7 @@ float temp_Pm, temp_palB, temp_palN, temp_Pb; //Temporary floats for the aphid c
 float temp_m, temp_b, temp_n, temp_p; //Temporary floats for the ladybud config file
 manager myMan;
 
-//Reads in text file
+//Reads in simulation config file
 void readSimConfig(){
 	cout << "Reading In file 1/3... ";
 	ifstream ifs;
@@ -63,7 +63,7 @@ void readSimConfig(){
 	//Close file again
 	ifs.close();
 }
-
+//Reads in aphid config file
 void readAphConfig(){
 	cout << "Reading in file 2/3... ";
 	ifstream ifC;
@@ -85,7 +85,7 @@ void readAphConfig(){
 	myMan.set_a_pALn(temp_palN);
 	myMan.set_a_Pb(temp_Pb);
 };
-
+//Reads in ladybug config file
 void readlBugConfig(){
 	cout << "Reading in file 3/3..." << endl;
 	ifstream ifL;
@@ -102,7 +102,10 @@ void readlBugConfig(){
 	ifL >> temp_n;
 	ifL >> temp_p;
 
-
+	myMan.set_l_Pm(temp_m);
+	myMan.set_l_pALb(temp_b);
+	myMan.set_a_pALn(temp_n);
+	myMan.set_a_Pb(temp_p);
 }
 
 
@@ -153,6 +156,7 @@ void createBoard(){
 int main(){
 	readSimConfig();
 	readAphConfig();
+	readlBugConfig();
 	createBoard();
 	cin.get();
 }
