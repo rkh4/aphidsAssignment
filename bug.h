@@ -30,12 +30,10 @@ public:
 class ladybug : public bug {
 private:
 	int pos[2];
-	int initialDirection;
 public:
 	ladybug();
 	int initialDirection();
-	moveDirection();
-	int moveDirection;
+	int moveDirection();
 	void update();	
 	~ladybug();
 };

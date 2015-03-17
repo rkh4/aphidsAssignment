@@ -7,11 +7,11 @@ aphid::aphid(){
 	//holds position
 };
 
-aphid::moveDirection() {
-
+int aphid::moveDirection() {
+	return 0;
 };
 
-update() {
+void aphid::update() {
 
 };
 

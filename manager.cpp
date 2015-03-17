@@ -1,8 +1,8 @@
 using namespace std;
 #include <iostream>
+#include "manager.h"
 
-class manager{
-public:
+
 	//.	..listOfCreatuesAlive
 	/*
 	update(); //each creature one at a time (loop)
@@ -10,4 +10,3 @@ public:
 	new();	  //create creature
 	moveCreatureWhenToldTo(setLocation_x, setLocation_y);
 	*/
-};

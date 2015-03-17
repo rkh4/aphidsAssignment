@@ -2,21 +2,22 @@
 #include <string>
 #include <fstream>
 #include <vector>
-//#include "bug.h"
+#include "bug.h"
 using namespace std;
-
 
 int board_x;
 int board_y;
 int aphid_count;
 int aphid[2];
-//vector<aphid> aphids;
 int ladybird_count;
 int ladybird[2];
-//vector<ladybug> lbugs;
+float temp_Pm;
+float temp_palB;
+float temp_palN;
+float temp_Pb;
 
 //Reads in text file
-void readFile(){
+void readSimConfig(){
 	cout << "Reading In file..." << endl;
 	ifstream ifs;
 	ifs.open("simConfig.txt");
@@ -53,11 +54,28 @@ void readFile(){
 	ifs.close();
 }
 
+void readAphConfig(){
+	cout << "Reading in file \"aphConfig.txt\"..." << endl;
+	ifstream ifC;
+	ifC.open("aphConfig.txt");
+
+	if (ifC.is_open()){
+		cout << "File read Successfully!" << endl;
+	} else {
+		cout << "Error reading file!" << endl;
+	};
+
+	ifC >> temp_Pm;
+	ifC >> temp_palB;
+	ifC >> temp_palN;
+	ifC >> temp_Pb;
+};
+
 
 void createBoard(){
 
 	//Creates vector of vectors (2d board) the size the the read-in file defines
-	vector<string> x(board_x,"[]");
+	vector<string> x(board_x,"[  ]");
 	vector<vector<string> > board(board_y, x);
 
 	//Prints playing board
@@ -65,7 +83,7 @@ void createBoard(){
 		for (int j = 0; j < board[i].size(); j++){
 			cout << board[i][j] << " ";
 		}
-		cout << endl;
+		cout << endl << endl;
 	}
 		//May still be issue to move around board, insert etc
 
@@ -79,11 +97,16 @@ void createBoard(){
 }
 
 int main() {
-	readFile();
+	readSimConfig();
 	createBoard();
+	readAphConfig();
 	cin.get();
 }
 
+
+
+//create manager object. manager myman;
+//myman.setmove(pm);
 
 
 

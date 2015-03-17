@@ -19,16 +19,19 @@ void setY(int y_pos) {
 }
 
 int getX() {
-	return this->pos[0];
+	//return this->pos[0];
+	return 0;
 }
 
 int getY() {
-	return this->pos[1];
+	//return this->pos[1];
+	return 0;
 }
 
 pair<int,int> getPos() {
-	tempPos(getX,getY);
+	pair<int,int> tempPos(getX(),getY());
 	return tempPos;
+
 }
 
 
