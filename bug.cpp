@@ -19,13 +19,12 @@ void bug::setY(int y_pos) {
 }
 
 int bug::getX() {
-	//return this->pos[0];
-	return 0;
+	return this->pos[0];
+	
 }
 
-int getY() {
-	//return this->pos[1];
-	return 0;
+int bug::getY() {
+	return this->pos[1];
 }
 
 /*pair<int,int> getPos() {

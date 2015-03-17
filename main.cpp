@@ -14,7 +14,8 @@ aphid a;
 vector<aphid> aphids;
 int ladybug_count;
 int ladybug_temp[2];
-//vector<ladybug> lBugs(;
+ladybug l;
+vector<ladybug> lBugs;
 float temp_Pm;
 float temp_palB;
 float temp_palN;
@@ -55,7 +56,8 @@ void readSimConfig(){
 	loop_count = 0;
 	while (loop_count < ladybug_count) {
 		ifs >> ladybug_temp[0] >> ladybug_temp[1];
-		//lBugs[loop_count]
+		//l.getPos(ladybug_temp[0], ladybug_temp[1]);
+		lBugs.push_back(l);
 		loop_count++;
 	}
 
@@ -88,16 +90,24 @@ void createBoard(){
 	vector<vector<string> > board(board_y, x);
 
 	//Prints playing board
-	for (int i = 0; i < board.size(); i++) {
-		for (int j = 0; j < board[i].size(); j++){
-			cout << board[i][j] << " ";
+	for (vector<aphid>::iterator ai = aphids.begin(); ai != aphids.end(); ai++){ //standard for loop, with vector iterator
+		int AphX = a.getX();
+		int AphY = a.getY();
+		for (int i = 0; i < board.size(); i++) {
+			for (int j = 0; j < board[i].size(); j++){
+				if ((*ai).getX() == i && (*ai).getY() == j){
+					//cell empty, false
+					//number of aphids ++
+				}
+
+			}
+			//cout << board[i][j] << " ";
+			//cout << endl << endl;
 		}
-		cout << endl << endl;
 	}
-		//May still be issue to move around board, insert etc
 }
 
-int main() {
+int main(){
 	readSimConfig();
 	createBoard();
 	readAphConfig();

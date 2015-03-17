@@ -25,6 +25,8 @@ class aphid : public bug {
 public:
 	aphid();
 	void setPos(int,int);
+	int getX();
+	int getY();
 	int moveDirection();
 	void update();
 	//~aphid();
