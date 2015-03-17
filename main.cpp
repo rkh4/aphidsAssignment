@@ -43,13 +43,33 @@ void readSimConfig(){
 	//Read in Aphids
 	ifs >> aphid_count;
 	int loop_count = 0;
-	while (loop_count < aphid_count) {
-		ifs >> aphid_temp[0] >> aphid_temp[1];
+	while (loop_count < (aphid_count-1)) {
+		ifs >> aphid_temp[0];
 		a.setPos(aphid_temp[0], aphid_temp[1]);
 		aphids.push_back(a);
 		loop_count++;
 	}
 
+	/* old way of doing it. just incase.
+	//Read in Aphids
+	ifs >> aphid_count;
+	int loop_count = 0;
+	while (loop_count < (aphid_count-1)) {
+	ifs >> aphid_temp[0] >> aphid_temp[1];
+	a.setPos(aphid_temp[0], aphid_temp[1]);
+	aphids.push_back(a);
+	loop_count++;
+	}
+
+	//Read in Ladybugs
+	ifs >> ladybug_count;
+	loop_count = 0;
+	while (loop_count < ladybug_count) {
+		ifs >> ladybug_temp[0] >> ladybug_temp[1];
+		//l.getPos(ladybug_temp[0], ladybug_temp[1]);
+		lBugs.push_back(l);
+		loop_count++;
+	}*/
 
 	//Read in Ladybugs
 	ifs >> ladybug_count;
@@ -94,26 +114,30 @@ void createBoard(){
 	int nolBugs = 0;
 
 	//Loops, and cell checks
-	for (vector<aphid>::iterator ai = aphids.begin(); ai != aphids.end(); ai++){ //standard for loop, with vector iterator
-		for (int i = 0; i < board.size(); i++) {
-			for (int j = 0; j < board[i].size(); j++){
-				if ((*ai).getX() == i && (*ai).getY() == j){
+	for (int i = 0; i < board.size(); i++) {
+		for (int j = 0; j < board[i].size(); j++){
+			for (vector<aphid>::iterator ai = aphids.begin(); ai != aphids.end(); ai++){ //aphids not initiated correctly
+				if ((*ai).getX() == j && (*ai).getY() == i){
 					noAphids++;
 				}
 			}
 			/*for (vector<ladybug>::iterator li = lBugs.begin(); li != lBugs.end(); li++){
-				if ((*li).getX() == i && (*li).getY() == j){
-					nolBugs++;
-				}
-				
-			}*/
+				  if ((*li).getX() == i && (*li).getY() == j){
+				  nolBugs++;
+				  }
+
+				  }*/
+
 			if (noAphids >= 1 && nolBugs >= 1) {
 				cout << "[" << noAphids << "A" << nolBugs << " L]";
-			} else if(noAphids >= 1) {
+			}
+			else if (noAphids >= 1) {
 				cout << "[" << noAphids << "A]";
-			} else if (nolBugs >= 1){
+			}
+			else if (nolBugs >= 1){
 				cout << "[" << nolBugs << "L]";
-			} else {
+			}
+			else {
 				cout << "[  ]";
 			}
 			noAphids = 0;
