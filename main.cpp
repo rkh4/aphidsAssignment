@@ -83,38 +83,54 @@ void readAphConfig(){
 };
 
 
+//Prints board
 void createBoard(){
 
 	//Creates vector of vectors (2d board) the size the the read-in file defines
 	vector<string> x(board_x,"[  ]");
 	vector<vector<string> > board(board_y, x);
 
-	//Prints playing board
+	int noAphids = 0;
+	int nolBugs = 0;
+
+	//Loops, and cell checks
 	for (vector<aphid>::iterator ai = aphids.begin(); ai != aphids.end(); ai++){ //standard for loop, with vector iterator
-		int AphX = a.getX();
-		int AphY = a.getY();
 		for (int i = 0; i < board.size(); i++) {
 			for (int j = 0; j < board[i].size(); j++){
 				if ((*ai).getX() == i && (*ai).getY() == j){
-					//cell empty, false
-					//number of aphids ++
+					noAphids++;
 				}
-
 			}
-			//cout << board[i][j] << " ";
-			//cout << endl << endl;
+			/*for (vector<ladybug>::iterator li = lBugs.begin(); li != lBugs.end(); li++){
+				if ((*li).getX() == i && (*li).getY() == j){
+					nolBugs++;
+				}
+				
+			}*/
+			if (noAphids >= 1 && nolBugs >= 1) {
+				cout << "[" << noAphids << "A" << nolBugs << " L]";
+			} else if(noAphids >= 1) {
+				cout << "[" << noAphids << "A]";
+			} else if (nolBugs >= 1){
+				cout << "[" << nolBugs << "L]";
+			} else {
+				cout << "[  ]";
+			}
+			noAphids = 0;
+			nolBugs = 0;
 		}
+		cout << endl;
 	}
 }
 
 int main(){
 	readSimConfig();
-	createBoard();
 	readAphConfig();
 	myMan.setPm(temp_Pm);
 	myMan.setpALb(temp_palB);
 	myMan.setpALn(temp_palN);
 	myMan.setPb(temp_Pb);
+	createBoard();
 	cin.get();
 }
 
