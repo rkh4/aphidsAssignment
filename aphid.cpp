@@ -8,12 +8,14 @@ float Pm;
 manager Man;
 
 aphid::aphid(){
-	pos[0] = 0;
-	pos[1] = 0;
+	pos[0] = 0; //x
+	pos[1] = 0; //y
 };
 
-
-
+void aphid::setPos(int temp_x,int temp_y) {
+	temp_x = pos[0];
+	temp_y = pos[1];
+}
 
 int aphid::moveDirection() {
 	/*Pm = Man.getPm();

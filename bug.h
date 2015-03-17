@@ -8,9 +8,9 @@ using namespace std;
 class bug {
 public:
 	bug();
-	int pos[2];
-	int x_pos = pos[0];
-	int y_pos = pos[1];
+	int pos[2]; //x,y
+	int x_pos = pos[0]; //x
+	int y_pos = pos[1]; //y
 	void setX(int x_pos);
 	void setY(int y_pos);
 	int getX();
@@ -24,7 +24,7 @@ public:
 class aphid : public bug {
 public:
 	aphid();
-	void setPos(aphid[0],aphid[1]);
+	void setPos(int,int);
 	int moveDirection();
 	void update();
 	//~aphid();

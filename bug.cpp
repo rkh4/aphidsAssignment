@@ -28,11 +28,11 @@ int getY() {
 	return 0;
 }
 
-pair<int,int> getPos() {
+/*pair<int,int> getPos() {
 	pair<int,int> tempPos(getX(),getY());
 	return tempPos;
 
-}
+}*/
 
 
 

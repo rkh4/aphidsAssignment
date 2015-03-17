@@ -9,11 +9,12 @@ using namespace std;
 int board_x;
 int board_y;
 int aphid_count;
-int aphid[2];
-vector<bug> aphids(aphid_count);
-int ladybird_count;
-int ladybug[2];
-vector<bug> lbugs(ladybird_count);
+int aphid_temp[2];
+aphid a;
+vector<aphid> aphids;
+int ladybug_count;
+int ladybug_temp[2];
+//vector<ladybug> lBugs(;
 float temp_Pm;
 float temp_palB;
 float temp_palN;
@@ -42,15 +43,19 @@ void readSimConfig(){
 	ifs >> aphid_count;
 	int loop_count = 0;
 	while (loop_count < aphid_count) {
-		ifs >> aphid[0] >> aphid[1];
+		ifs >> aphid_temp[0] >> aphid_temp[1];
+		a.setPos(aphid_temp[0], aphid_temp[1]);
+		aphids.push_back(a);
 		loop_count++;
 	}
 
-	//Read in Ladybirds
-	ifs >> ladybird_count;
+
+	//Read in Ladybugs
+	ifs >> ladybug_count;
 	loop_count = 0;
-	while (loop_count < ladybird_count) {
-		ifs >> ladybug[0] >> ladybug[1];
+	while (loop_count < ladybug_count) {
+		ifs >> ladybug_temp[0] >> ladybug_temp[1];
+		//lBugs[loop_count]
 		loop_count++;
 	}
 

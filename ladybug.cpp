@@ -28,6 +28,7 @@ int ladybug::initialDirection(){
 			return 4; //West
 			break;
 	}*/
+	return 0;
 };
 
 
