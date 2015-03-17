@@ -22,11 +22,12 @@ float temp_palN;
 float temp_Pb;
 manager myMan;
 
+
 //Reads in text file
 void readSimConfig(){
 	cout << "Reading In file..." << endl;
 	ifstream ifs;
-	ifs.open("simConfig.txt");
+	ifs.open("simConfig.txt"); //Inputting text file
 	
 	//Checks if file has been read correctly
 	if (ifs.is_open()){
@@ -42,34 +43,14 @@ void readSimConfig(){
 
 	//Read in Aphids
 	ifs >> aphid_count;
-	int loop_count = 0;
-	while (loop_count < (aphid_count-1)) {
-		ifs >> aphid_temp[0];
+	int loop_count = 0; 
+	//Loops through the next few lines, adding aphids positons to a vector
+	while (loop_count < aphid_count) {
+		ifs >> aphid_temp[0] >> aphid_temp[1];
 		a.setPos(aphid_temp[0], aphid_temp[1]);
-		aphids.push_back(a);
+		aphids.push_back(a); //this isn't working, stopping the aphids initialise correctly
 		loop_count++;
 	}
-
-	/* old way of doing it. just incase.
-	//Read in Aphids
-	ifs >> aphid_count;
-	int loop_count = 0;
-	while (loop_count < (aphid_count-1)) {
-	ifs >> aphid_temp[0] >> aphid_temp[1];
-	a.setPos(aphid_temp[0], aphid_temp[1]);
-	aphids.push_back(a);
-	loop_count++;
-	}
-
-	//Read in Ladybugs
-	ifs >> ladybug_count;
-	loop_count = 0;
-	while (loop_count < ladybug_count) {
-		ifs >> ladybug_temp[0] >> ladybug_temp[1];
-		//l.getPos(ladybug_temp[0], ladybug_temp[1]);
-		lBugs.push_back(l);
-		loop_count++;
-	}*/
 
 	//Read in Ladybugs
 	ifs >> ladybug_count;
