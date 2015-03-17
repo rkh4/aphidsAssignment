@@ -18,7 +18,21 @@ void manager::setPb(float temp_Pb){
 	this->Pb = temp_Pb;
 }
 
+float manager::getPm(){
+	return this->Pm;
+}
 
+float manager::getpALb(){
+	return this->pALb;
+}
+
+float manager::getpAln(){
+	return this->pALn;
+}
+
+float manager::getPb(){
+	return this->Pb;
+}
 
 	//.	..listOfCreatuesAlive
 	/*

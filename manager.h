@@ -2,6 +2,7 @@
 #define _manager_h_
 
 class manager {
+public:
 	//Variable Initialisation
 	float Pm = 0;	//Probability for the creature to move
 	float pALb = 0; //Base prob for aphid to kill ladybug
@@ -15,10 +16,10 @@ class manager {
 	void setPb(float temp_Pb);
 	
 	//Get functions, for the bug/aphid/ladybug files
-	void getPm();
-	void getpALb();
-	void getpAln();
-	void getPb();
+	float getPm();
+	float getpALb();
+	float getpAln();
+	float getPb();
 
 
 	//voidSetProb(float...temp) 

@@ -16,6 +16,7 @@ float temp_Pm;
 float temp_palB;
 float temp_palN;
 float temp_Pb;
+manager myMan;
 
 //Reads in text file
 void readSimConfig(){
@@ -101,11 +102,12 @@ int main() {
 	readSimConfig();
 	createBoard();
 	readAphConfig();
+	myMan.setPm(temp_Pm);
+	myMan.setpALb(temp_palB);
+	myMan.setpALn(temp_palN);
+	myMan.setPb(temp_Pb);
 	cin.get();
 }
-
-manager myman;
-myman.setPm(temp_Pm);
 
 //create manager object. manager myman;
 //myman.setmove(pm);
