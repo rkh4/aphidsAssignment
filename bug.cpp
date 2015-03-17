@@ -10,15 +10,15 @@ bug::bug() {
 	pos[1] = 0;
 }
 
-void setX(int x_pos) {
-
+void bug::setX(int x_pos) {
+	this->pos[0] = x_pos;
 }
 
-void setY(int y_pos) {
-
+void bug::setY(int y_pos) {
+	this->pos[1] = y_pos;
 }
 
-int getX() {
+int bug::getX() {
 	//return this->pos[0];
 	return 0;
 }
@@ -33,7 +33,6 @@ pair<int,int> getPos() {
 	return tempPos;
 
 }
-
 
 
 

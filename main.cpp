@@ -10,8 +10,10 @@ int board_x;
 int board_y;
 int aphid_count;
 int aphid[2];
+vector<bug> aphids(aphid_count);
 int ladybird_count;
-int ladybird[2];
+int ladybug[2];
+vector<bug> lbugs(ladybird_count);
 float temp_Pm;
 float temp_palB;
 float temp_palN;
@@ -48,7 +50,7 @@ void readSimConfig(){
 	ifs >> ladybird_count;
 	loop_count = 0;
 	while (loop_count < ladybird_count) {
-		ifs >> ladybird[0] >> ladybird[1];
+		ifs >> ladybug[0] >> ladybug[1];
 		loop_count++;
 	}
 
@@ -88,14 +90,6 @@ void createBoard(){
 		cout << endl << endl;
 	}
 		//May still be issue to move around board, insert etc
-
-
-	//VECTOR NOTES
-	//board.insert (board.begin() + 5, "name"); //insert "name" at position 5
-	//board.remove (board.begin() + 3);   //Remove element at position 3
-	//vector<string>::iterator i;
-	//i->length   or     (*i).length     //get length of string (can use similar method to get value later? )
- 
 }
 
 int main() {
@@ -109,17 +103,20 @@ int main() {
 	cin.get();
 }
 
-//create manager object. manager myman;
-//myman.setmove(pm);
 
 
+//VECTOR NOTES
+//board.insert (board.begin() + 5, "name"); //insert "name" at position 5
+//board.remove (board.begin() + 3);   //Remove element at position 3
+//vector<string>::iterator i;
+//i->length   or     (*i).length     //get length of string (can use similar method to get value later? )
 
 
 /* -----------------------------------------
 			OLD STUFF MAY NOT NEED
    -----------------------------------------
-
-   string board[10][10] = {
+*/
+/*   string board[10][10] = {
    { "-", "-", "-", "-", "-", "-", "-", "-", "-", "-" },
    { "-", "-", "-", "-", "-", "-", "-", "-", "-", "-" },
    { "-", "-", "-", "-", "-", "-", "-", "-", "-", "-" },

@@ -17,17 +17,17 @@ public:
 	int getY();
 	pair<int, int> getPos();
 	void update();
-	~bug();
+	//~bug(); //got to impliment if you include
 };
-
 
 
 class aphid : public bug {
 public:
 	aphid();
+	void setPos(aphid[0],aphid[1]);
 	int moveDirection();
 	void update();
-	~aphid();
+	//~aphid();
 };
 
 class ladybug : public bug {
@@ -38,7 +38,7 @@ public:
 	int initialDirection();
 	int moveDirection();
 	void update();	
-	~ladybug();
+	//~ladybug();
 };
 
 #endif

@@ -3,16 +3,17 @@ using namespace std;
 
 int randNo = 0;
 
+//Derived class of bug
 ladybug::ladybug(){
 	//hold positions
-	int initialDirection = 1; //set default value
-	int moveDirection = 1;
+	int initialDirection = 0; //set default value
+	int moveDirection = 0;
 };
 
 
 //Chosing ladybugs initial direction, N/E/S/W
 int ladybug::initialDirection(){
-	randNo = rand() % 4;
+	/*randNo = rand() % 4;
 	switch (randNo) {
 		case(0):
 			return 1; //North
@@ -26,12 +27,13 @@ int ladybug::initialDirection(){
 		case(3):
 			return 4; //West
 			break;
-	}
+	}*/
 };
+
 
 //Selects which of the three preffered directions (based on initial) to move.
 int ladybug::moveDirection(){
-	randNo = rand() % 3;
+	/*randNo = rand() % 3;
 	switch(randNo){
 		case(1):
 			return 1; 
@@ -42,5 +44,6 @@ int ladybug::moveDirection(){
 		case(3):
 			return 3;
 			break;
-	}	
+	}*/	
+	return 0;
 }
