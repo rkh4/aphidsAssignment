@@ -104,7 +104,8 @@ int main() {
 	cin.get();
 }
 
-manager myman();
+manager myman;
+myman.setPm(temp_Pm);
 
 //create manager object. manager myman;
 //myman.setmove(pm);
