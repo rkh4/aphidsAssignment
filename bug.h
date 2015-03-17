@@ -1,3 +1,6 @@
+#ifndef _bug_h_
+#define _bug_h_
+
 using namespace std;
 #include <utility>
 
@@ -37,3 +40,5 @@ public:
 	void update();	
 	~ladybug();
 };
+
+#endif

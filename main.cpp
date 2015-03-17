@@ -3,6 +3,7 @@
 #include <fstream>
 #include <vector>
 #include "bug.h"
+#include "manager.h"
 using namespace std;
 
 int board_x;
@@ -103,7 +104,7 @@ int main() {
 	cin.get();
 }
 
-
+manager myman();
 
 //create manager object. manager myman;
 //myman.setmove(pm);
