@@ -6,9 +6,23 @@ int randNo = 0;
 //Derived class of bug
 ladybug::ladybug(){
 	//hold positions
-	int initialDirection = 0; //set default value
-	int moveDirection = 0;
+	//int initialDirection = 0; //set default value
+	//int moveDirection = 0;
 };
+
+void ladybug::setPos(int temp_x, int temp_y)
+{
+	this->pos[0] = temp_x;
+	this->pos[1] = temp_y;
+}
+
+int ladybug::getX(){
+	return this->pos[0];
+}
+
+int ladybug::getY(){
+	return this->pos[1];
+}
 
 
 //Chosing ladybugs initial direction, N/E/S/W
@@ -47,4 +61,8 @@ int ladybug::moveDirection(){
 			break;
 	}*/	
 	return 0;
+}
+
+void update(){
+
 }

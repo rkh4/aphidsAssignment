@@ -2,6 +2,7 @@
 #include <string>
 #include <fstream>
 #include <vector>
+#include "main.h"
 #include "bug.h"
 #include "manager.h"
 using namespace std;
@@ -16,16 +17,13 @@ int ladybug_count;
 int ladybug_temp[2];
 ladybug l;
 vector<ladybug> lBugs;
-float temp_Pm;
-float temp_palB;
-float temp_palN;
-float temp_Pb;
+float temp_Pm, temp_palB, temp_palN, temp_Pb; //Temporary floats for the aphid config file
+float temp_m, temp_b, temp_n, temp_p; //Temporary floats for the ladybud config file
 manager myMan;
-
 
 //Reads in text file
 void readSimConfig(){
-	cout << "Reading In file..." << endl;
+	cout << "Reading In file 1/3... ";
 	ifstream ifs;
 	ifs.open("simConfig.txt"); //Inputting text file
 	
@@ -46,7 +44,7 @@ void readSimConfig(){
 	int loop_count = 0; 
 	//Loops through the next few lines, adding aphids positons to a vector
 	while (loop_count < aphid_count) {
-		ifs >> aphid_temp[0] >> aphid_temp[1];
+		ifs >> aphid_temp[0] >> aphid_temp[1]; //X then Y
 		a.setPos(aphid_temp[0], aphid_temp[1]);
 		aphids.push_back(a);
 		loop_count++;
@@ -57,7 +55,7 @@ void readSimConfig(){
 	loop_count = 0;
 	while (loop_count < ladybug_count) {
 		ifs >> ladybug_temp[0] >> ladybug_temp[1];
-		//l.getPos(ladybug_temp[0], ladybug_temp[1]);
+		l.setPos(ladybug_temp[0], ladybug_temp[1]);
 		lBugs.push_back(l);
 		loop_count++;
 	}
@@ -67,7 +65,7 @@ void readSimConfig(){
 }
 
 void readAphConfig(){
-	cout << "Reading in file \"aphConfig.txt\"..." << endl;
+	cout << "Reading in file 2/3... ";
 	ifstream ifC;
 	ifC.open("aphConfig.txt");
 
@@ -81,7 +79,31 @@ void readAphConfig(){
 	ifC >> temp_palB;
 	ifC >> temp_palN;
 	ifC >> temp_Pb;
+
+	myMan.set_a_Pm(temp_Pm);
+	myMan.set_a_pALb(temp_palB);
+	myMan.set_a_pALn(temp_palN);
+	myMan.set_a_Pb(temp_Pb);
 };
+
+void readlBugConfig(){
+	cout << "Reading in file 3/3..." << endl;
+	ifstream ifL;
+	ifL.open("lBugConfig.txt");
+
+	if (ifL.is_open()){
+		cout << "file readSuccessfully!" << endl;
+	} else {
+		cout << "Error reading file!" << endl;
+	};
+
+	ifL >> temp_m;
+	ifL >> temp_b;
+	ifL >> temp_n;
+	ifL >> temp_p;
+
+
+}
 
 
 //Prints board
@@ -95,46 +117,42 @@ void createBoard(){
 	int nolBugs = 0;
 
 	//Loops, and cell checks
+	cout << endl<<  "---------------------------------------------------" << endl;
 	for (int i = 0; i < board.size(); i++) {
 		for (int j = 0; j < board[i].size(); j++){
 			for (vector<aphid>::iterator ai = aphids.begin(); ai != aphids.end(); ai++){ //aphids not initiated correctly
-				if ((*ai).getX() == j && (*ai).getY() == i){
+				if ((*ai).getX() == i && (*ai).getY() == j){
 					noAphids++;
 				}
 			}
-			/*for (vector<ladybug>::iterator li = lBugs.begin(); li != lBugs.end(); li++){
+			for (vector<ladybug>::iterator li = lBugs.begin(); li != lBugs.end(); li++){
 				  if ((*li).getX() == i && (*li).getY() == j){
 				  nolBugs++;
 				  }
 
-				  }*/
-
+				  }
 			if (noAphids >= 1 && nolBugs >= 1) {
-				cout << "[" << noAphids << "A" << nolBugs << " L]";
+				cout << "|" << noAphids << "A" << nolBugs << "L";
 			}
 			else if (noAphids >= 1) {
-				cout << "[" << noAphids << "A]";
+				cout << "|" << noAphids << "A  ";
 			}
 			else if (nolBugs >= 1){
-				cout << "[" << nolBugs << "L]";
+				cout << "|  " << nolBugs << "L";
 			}
 			else {
-				cout << "[  ]";
+				cout << "|    ";
 			}
 			noAphids = 0;
 			nolBugs = 0;
 		}
-		cout << endl;
+		cout << "|" << endl << "---------------------------------------------------" << endl;
 	}
 }
 
 int main(){
 	readSimConfig();
 	readAphConfig();
-	myMan.setPm(temp_Pm);
-	myMan.setpALb(temp_palB);
-	myMan.setpALn(temp_palN);
-	myMan.setPb(temp_Pb);
 	createBoard();
 	cin.get();
 }

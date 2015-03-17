@@ -22,6 +22,8 @@ public:
 
 
 class aphid : public bug {
+private:
+
 public:
 	aphid();
 	void setPos(int,int);
@@ -33,10 +35,13 @@ public:
 };
 
 class ladybug : public bug {
-private:
-	int pos[2];
+//private:
+//	int pos[2];
 public:
 	ladybug();
+	void setPos(int, int);
+	int getX();
+	int getY();
 	int initialDirection();
 	int moveDirection();
 	void update();	
