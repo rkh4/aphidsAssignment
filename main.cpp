@@ -48,7 +48,7 @@ void readSimConfig(){
 	while (loop_count < aphid_count) {
 		ifs >> aphid_temp[0] >> aphid_temp[1];
 		a.setPos(aphid_temp[0], aphid_temp[1]);
-		aphids.push_back(a); //this isn't working, stopping the aphids initialise correctly
+		aphids.push_back(a);
 		loop_count++;
 	}
 

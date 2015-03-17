@@ -6,16 +6,15 @@ using namespace std;
 
 //Default constructor values
 bug::bug() {
-	pos[0] = 0;
-	pos[1] = 0;
+
 }
 
 void bug::setX(int x_pos) {
-	this->pos[0] = x_pos;
+	//this->pos[0] = x_pos;
 }
 
 void bug::setY(int y_pos) {
-	this->pos[1] = y_pos;
+	//this->pos[1] = y_pos;
 }
 
 int bug::getX() {

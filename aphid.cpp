@@ -8,13 +8,12 @@ float Pm;
 manager Man;
 
 aphid::aphid(){
-	pos[0] = 0; //X
-	pos[1] = 0; //Y
+
 };
 
 void aphid::setPos(int temp_x,int temp_y) {
-	temp_x = pos[0]; //X
-	temp_y = pos[1]; //Y
+	this->pos[0] = temp_x; //X
+	this->pos[1] = temp_y; //Y
 }
 
 int aphid::getX() {
