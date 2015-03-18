@@ -2,12 +2,10 @@
 #include <string>
 #include <fstream>
 #include <vector>
-#include "main.h"
 #include "bug.h"
 #include "manager.h"
 #include <chrono>
 #include <thread>
-
 using namespace std;
 
 int board_x;

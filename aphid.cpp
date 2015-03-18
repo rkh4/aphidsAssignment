@@ -66,8 +66,8 @@ void aphid::moveDirection() {
 };
 
 void aphid::update(){
-	Pm = Man.get_a_Pm(); //hold own probability
-	int rand1 = rand() % (10);
+	//Pm = Man.get_a_Pm(); //hold own probability
+	//int rand1 = rand() % (10);
 	//if ((Pm) <= rand1) {
 	//	cout << "Aphid moved" << endl;
 		moveDirection();
