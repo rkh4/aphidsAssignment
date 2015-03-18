@@ -31,12 +31,6 @@ int aphid::getY() {
 	return this->pos[1];
 }
 
-void aphid::setPos(int temp_x, int temp_y)
-{
-	this->pos[0] = temp_x;
-	this->pos[1] = temp_y;
-}
-
 void aphid::moveDirection() {
 	int rand2 = rand() % 8;
 	switch (rand2) {

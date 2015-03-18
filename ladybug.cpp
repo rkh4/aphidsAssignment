@@ -10,10 +10,8 @@ ladybug::ladybug(){
 	//int moveDirection = 0;
 };
 
-void ladybug::setPos(int temp_x, int temp_y)
-{
-	this->pos[0] = temp_x;
-	this->pos[1] = temp_y;
+ladybug::ladybug(int Xpos, int Ypos, float moveProb, float changeDir, float aphKill, float giveBirthProb){
+
 }
 
 int ladybug::getX(){

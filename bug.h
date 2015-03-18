@@ -43,8 +43,9 @@ class ladybug : public bug {
 //private:
 //	int pos[2];
 public:
-	ladybug();
-	void setPos(int, int);
+	ladybug(); //Defeault constructor
+	//~ladybug(); //Destructor
+	ladybug(int Xpos, int Ypos, float moveProb, float changeDir, float aphKill, float giveBirthProb);
 	int getX();
 	int getY();
 	int initialDirection();
