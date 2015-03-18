@@ -14,8 +14,8 @@ manager::manager(){
 manager::manager(vector<aphid> createAphids, vector<ladybug> createLadybugs, int board_x, int board_y){
 	this->board_x = board_x; //The width of the board
 	this->board_y = board_y; //The height of the board
-	createAphids = aphids;	 //Creates a local instance of the aphids vector
-	createLadybugs = lBugs;	 //Creates a local instance of the ladybugs vector
+	aphids = createAphids;	 //Creates a local instance of the aphids vector
+	lBugs = createLadybugs;	 //Creates a local instance of the ladybugs vector
 }
 
 //----------------------PRINTS BOARD----------------------------
@@ -59,4 +59,8 @@ void manager::printBoard(){
 		}
 		cout << "|" << endl << "---------------------------------------------------" << endl;
 	}
+}
+
+void manager::update(){
+
 }

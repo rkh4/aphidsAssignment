@@ -15,6 +15,7 @@ public:
 	manager(); //Default constructor
 	manager(vector<aphid> createAphids,vector<ladybug> createLadybugs, int board_x, int board_y);
 	void printBoard();
+	void update();
 	//~manager(); //Destructor
 };
 
