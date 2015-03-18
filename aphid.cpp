@@ -32,7 +32,7 @@ void aphid::moveDirection(int board_x, int board_y, int randomNo) {
 	randomNo = rand() % 8;
 
 	//Checks if on the left border
-	if (this->pos[0] == 0) {
+	if (this->pos[0] == 1) {
 		if (randomNo == 5 || randomNo == 6 || randomNo == 7){
 			cout << "Trying to move out of spec, Re-rolling" << endl;
 			moveDirection(board_x,board_y, randomNo);
@@ -53,7 +53,7 @@ void aphid::moveDirection(int board_x, int board_y, int randomNo) {
 		}
 	}
 	//Checks if on the top border
-	if (this->pos[1] == 0){
+	if (this->pos[1] == 1){
 		if (randomNo == 7 || randomNo == 0 || randomNo == 1){
 			cout << "Trying to move out of spec, Re-rolling" << endl;
 			moveDirection(board_x,board_y, randomNo);

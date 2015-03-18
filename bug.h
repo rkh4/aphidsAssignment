@@ -40,10 +40,11 @@ private:
 	float changeDirProb = 0.0;
 	float aphKillProb = 0.0;
 	float lBugGiveBirthProb = 0.0;
+	int preferredDirection = 0;
 public:
 	ladybug(); //Defeault constructor
 	ladybug(int Xpos, int Ypos, float moveProb, float changeDir, float aphKill, float giveBirthProb);
-	int initialDirection();
+	int newPreferredDirection();
 	void moveDirection();
 	void update();	
 	//~ladybug(); //Destructor

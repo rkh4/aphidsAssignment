@@ -67,6 +67,12 @@ void manager::updateGrid(){
 	for (vector<aphid>::iterator AphIt = this->aphids.begin(); AphIt != this->aphids.end(); AphIt++){
 		(*AphIt).update(board_x,board_y);
 	}
+	for (vector<ladybug>::iterator lBugIt = this->lBugs.begin(); lBugIt != this->lBugs.end(); lBugIt++){
+		(*lBugIt).newPreferredDirection();
+	}
+	//iterate through ladybugs
+	//call newPreferredDirection
+	//call update
 	printBoard();
 	cin.get();
 	updateGrid();

@@ -7,9 +7,6 @@ using namespace std;
 ladybug::ladybug(){
 	pos[0] = 0;
 	pos[1] = 0;
-	
-	//int initialDirection = 0; //set default value
-	//int moveDirection = 0;
 };
 
 ladybug::ladybug(int Xpos, int Ypos, float moveProb, float changeDir, float aphKill, float giveBirthProb){
@@ -23,8 +20,8 @@ ladybug::ladybug(int Xpos, int Ypos, float moveProb, float changeDir, float aphK
 
 
 //Chosing ladybugs initial direction, N/E/S/W
-int ladybug::initialDirection(){
-	/*int randNo = rand() % 4;
+int ladybug::newPreferredDirection(){
+	int randNo = rand() % 4;
 	switch (randNo) {
 		case(0):
 			return 1; //North
@@ -38,15 +35,25 @@ int ladybug::initialDirection(){
 		case(3):
 			return 4; //West
 			break;
-	}*/
-	return 0;
+	}
 };
 
 
 //Selects which of the three preffered directions (based on initial) to move.
 void ladybug::moveDirection(){
-	//if (initialDirection){
-	//}
+	if (this->preferredDirection == 1){
+
+	}
+	else if (this->preferredDirection == 2){
+
+	}
+	else if (this->preferredDirection == 3){
+
+	}
+	else if (this->preferredDirection == 4){
+
+	}
+
 	/*randNo = rand() % 3;
 	switch(randNo){
 		case(1):
@@ -61,6 +68,8 @@ void ladybug::moveDirection(){
 	}*/	
 }
 
-void update(){
+void ladybug::update(){
+	
+
 
 }
