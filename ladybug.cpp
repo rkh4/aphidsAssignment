@@ -1,31 +1,30 @@
 using namespace std;
 #include "bug.h"
-
-int randNo = 0;
+#include <iostream>
 
 //Derived class of bug
+
 ladybug::ladybug(){
-	//hold positions
+	pos[0] = 0;
+	pos[1] = 0;
+	
 	//int initialDirection = 0; //set default value
 	//int moveDirection = 0;
 };
 
 ladybug::ladybug(int Xpos, int Ypos, float moveProb, float changeDir, float aphKill, float giveBirthProb){
-
-}
-
-int ladybug::getX(){
-	return this->pos[0];
-}
-
-int ladybug::getY(){
-	return this->pos[1];
+	this->pos[0] = Xpos;
+	this->pos[1] = Ypos;
+	this->lBugMoveProb = moveProb;
+	this->changeDirProb = changeDir;
+	this->aphKillProb = aphKill;
+	this->lBugGiveBirthProb = giveBirthProb;
 }
 
 
 //Chosing ladybugs initial direction, N/E/S/W
 int ladybug::initialDirection(){
-	randNo = rand() % 4;
+	/*int randNo = rand() % 4;
 	switch (randNo) {
 		case(0):
 			return 1; //North
@@ -39,7 +38,7 @@ int ladybug::initialDirection(){
 		case(3):
 			return 4; //West
 			break;
-	}
+	}*/
 	return 0;
 };
 

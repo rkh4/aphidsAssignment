@@ -1,8 +1,8 @@
 using namespace std;
 #include "bug.h"
 #include "manager.h"
-#include <stdlib.h>
 #include <iostream>
+//#include <stdlib.h>
 
 //Derived class of Bug
 
@@ -21,14 +21,6 @@ aphid::aphid(int Xpos, int Ypos, float moveProb, float lbugKillProb, float helpK
 	this->lbugKillProb = lbugKillProb;
 	this->helpKillProb = helpKillProb;
 	this->aphGiveBirthProb = aphGiveBirthProb;
-}
-
-int aphid::getX() {
-	return this->pos[0];
-}
-
-int aphid::getY() {
-	return this->pos[1];
 }
 
 void aphid::moveDirection() {
