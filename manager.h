@@ -3,6 +3,9 @@
 
 class manager {
 public:
+	manager();
+
+
 	//Variable Initialisation
 	float a_Pm = 0;	//Probability for the aphid to move
 	float a_pALb = 0; //Base prob for aphid to kill ladybug

@@ -43,7 +43,7 @@ public:
 	int getX();
 	int getY();
 	int initialDirection();
-	int moveDirection();
+	void moveDirection();
 	void update();	
 	//~ladybug();
 };

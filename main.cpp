@@ -5,6 +5,9 @@
 #include "main.h"
 #include "bug.h"
 #include "manager.h"
+#include <chrono>
+#include <thread>
+
 using namespace std;
 
 int board_x;
@@ -80,7 +83,7 @@ void readAphConfig(){
 	ifC >> temp_palN;
 	ifC >> temp_Pb;
 
-	myMan.set_a_Pm(temp_Pm);
+	myMan.set_a_Pm(temp_Pm); //dont pass in here, later, when object of aphid created, pass in all temp variables
 	myMan.set_a_pALb(temp_palB);
 	myMan.set_a_pALn(temp_palN);
 	myMan.set_a_Pb(temp_Pb);
@@ -102,7 +105,7 @@ void readlBugConfig(){
 	ifL >> temp_n;
 	ifL >> temp_p;
 
-	myMan.set_l_Pm(temp_m);
+	myMan.set_l_Pm(temp_m); //dont pass here, later when ladybug called, pass in temps 
 	myMan.set_l_pALb(temp_b);
 	myMan.set_a_pALn(temp_n);
 	myMan.set_a_Pb(temp_p);
@@ -157,7 +160,11 @@ void m_update(){
 		for (vector<aphid>::iterator aphUD = aphids.begin(); aphUD != aphids.end(); aphUD++){
 			(*aphUD).update();
 		}
+		/*for (vector<ladybug>::iterator lBugUD = lBugs.begin(); lBugUD != lBugs.end(); lBugUD++){
+			(*lBugUD).update();
+		}*/
 		createBoard();
+		this_thread::sleep_for(std::chrono::milliseconds(1000));
 	}
 }
 
