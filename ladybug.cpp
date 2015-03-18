@@ -1,6 +1,11 @@
 using namespace std;
 #include "bug.h"
 #include <iostream>
+//#include <time.h>
+#include <stdlib.h>
+#include <stdio.h>
+//#include <random>
+//#include <ctime>
 
 //Derived class of bug
 
@@ -21,7 +26,7 @@ ladybug::ladybug(int Xpos, int Ypos, float moveProb, float changeDir, float aphK
 
 //Chosing ladybugs initial direction, N/E/S/W
 int ladybug::newPreferredDirection(){
-	int randNo = rand() % 4;
+	int randNo = rand();
 	switch (randNo) {
 		case(0):
 			return 1; //North

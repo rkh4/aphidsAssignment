@@ -4,6 +4,7 @@ using namespace std;
 #include <iostream>
 #include <time.h>
 #include <stdlib.h>
+#include <stdio.h>
 #include <random>
 #include <ctime>
 //#include <stdlib.h>
