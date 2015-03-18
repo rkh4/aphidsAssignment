@@ -45,7 +45,7 @@ void readSimConfig(){
 	//Loops through the next few lines, adding aphids positons to a vector
 	while (loop_count < aphid_count) {
 		ifs >> aphid_temp[0] >> aphid_temp[1]; //X then Y
-		a.setPos(aphid_temp[0], aphid_temp[1]);
+		(a).setPos(aphid_temp[0], aphid_temp[1]);
 		aphids.push_back(a);
 		loop_count++;
 	}
@@ -87,7 +87,7 @@ void readAphConfig(){
 };
 //Reads in ladybug config file
 void readlBugConfig(){
-	cout << "Reading in file 3/3..." << endl;
+	cout << "Reading in file 3/3... ";
 	ifstream ifL;
 	ifL.open("lBugConfig.txt");
 
@@ -111,9 +111,8 @@ void readlBugConfig(){
 
 //Prints board
 void createBoard(){
-
 	//Creates vector of vectors (2d board) the size the the read-in file defines
-	vector<string> x(board_x,"[  ]");
+	vector<string> x(board_x, "[  ]");
 	vector<vector<string> > board(board_y, x);
 
 	int noAphids = 0;
@@ -123,7 +122,7 @@ void createBoard(){
 	cout << endl<<  "---------------------------------------------------" << endl;
 	for (int i = 0; i < board.size(); i++) {
 		for (int j = 0; j < board[i].size(); j++){
-			for (vector<aphid>::iterator ai = aphids.begin(); ai != aphids.end(); ai++){ //aphids not initiated correctly
+			for (vector<aphid>::iterator ai = aphids.begin(); ai != aphids.end(); ai++){
 				if ((*ai).getX() == i && (*ai).getY() == j){
 					noAphids++;
 				}
@@ -153,21 +152,24 @@ void createBoard(){
 	}
 }
 
+void m_update(){
+	while (0 == 0) {
+		for (vector<aphid>::iterator aphUD = aphids.begin(); aphUD != aphids.end(); aphUD++){
+			(*aphUD).update();
+		}
+		createBoard();
+	}
+}
+
 int main(){
 	readSimConfig();
 	readAphConfig();
 	readlBugConfig();
 	createBoard();
+	m_update();
 	cin.get();
 }
 
-
-
-//VECTOR NOTES
-//board.insert (board.begin() + 5, "name"); //insert "name" at position 5
-//board.remove (board.begin() + 3);   //Remove element at position 3
-//vector<string>::iterator i;
-//i->length   or     (*i).length     //get length of string (can use similar method to get value later? )
 
 
 /* -----------------------------------------

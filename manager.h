@@ -4,7 +4,7 @@
 class manager {
 public:
 	//Variable Initialisation
-	float a_Pm = 0;	//Probability for the creature to move
+	float a_Pm = 0;	//Probability for the aphid to move
 	float a_pALb = 0; //Base prob for aphid to kill ladybug
 	float a_pALn = 0; //Additional prob, per aphid to help kill a ladybug
 	float a_Pb = 0;	//Prob for two aphids to give birth when they meet in a cell
@@ -19,6 +19,8 @@ public:
 	//Get functions, for the bug/aphid/ladybug files
 	float get_a_Pm(), get_a_pALb(), get_a_pAln(), get_a_Pb();
 	float get_l_Pm(), get_l_pALb(), get_l_pAln(), get_l_Pb();
+
+
 };
 
 

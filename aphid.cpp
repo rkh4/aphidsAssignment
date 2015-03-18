@@ -1,6 +1,8 @@
 using namespace std;
 #include "bug.h"
 #include "manager.h"
+#include <stdlib.h>
+#include <iostream>
 
 //Derived class of Bug
 
@@ -8,7 +10,8 @@ float Pm;
 manager Man;
 
 aphid::aphid(){
-
+	pos[0] = 0;
+	pos[1] = 0;
 };
 
 void aphid::setPos(int temp_x,int temp_y) {
@@ -24,44 +27,53 @@ int aphid::getY() {
 	return this->pos[1];
 }
 
-int aphid::moveDirection() {
-	/*Pm = Man.getPm();
-	if (Pm) {
-		int randNo = rand() % 8;
-		switch (randNo) {
-			case(0) :
-				//move up things
-				return 0;
-				break;
-			case(1) :
-				//move up-right things
-				return 0;
-				break;
-			case(2) :
-				//move right things
-				return 0;
-			case(3) :
-				//move right-down things
-				return 0;
-			case(4) :
-				//move down things
-				return 0;
-			case(5) :
-				//move left-down things
-				return 0;
-			case(6) :
-				//move left things
-				return 0;
-			case(7) :
-				//move left-right things
-				return 0;
-			default:
-				return 0;
-		}
-	}*/
-	return 0;
+void aphid::moveDirection() {
+	int rand2 = rand() % 8;
+	switch (rand2) {
+	case(0) :
+		//Decrement Y by 1, moving up
+		this->pos[0]--;
+		break;
+	case(1) :
+		//Decrement Y, Incriment X, move up-right
+		this->pos[0]--;
+		this->pos[1]++;
+		break;
+	case(2) :
+		//Increment X, move right
+		this->pos[1]++;
+		break;
+	case(3) :
+		//move right-down
+		this->pos[0]++;
+		this->pos[1]++;
+		break;
+	case(4) :
+		//move down
+		this->pos[0]++;
+		break;
+	case(5) :
+		//move left-down
+		this->pos[0]++;
+		this->pos[1]--;
+	case(6) :
+		//move left
+		this->pos[1]--;
+	case(7) :
+		//move left-up
+		this->pos[0]--;
+		this->pos[1]--;
+	}
 };
 
 void aphid::update(){
-		
+	//Pm = Man.get_a_Pm();
+	//int rand1 = rand() % (10);
+	//if ((Pm) <= rand1) {
+	//	cout << "Aphid moved" << endl;
+		moveDirection();
+	//}
+	//else {
+	//	cout << "Aphid did not move" << endl;
+	//}
 };

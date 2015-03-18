@@ -29,7 +29,7 @@ public:
 	void setPos(int,int);
 	int getX();
 	int getY();
-	int moveDirection();
+	void moveDirection();
 	void update();
 	//~aphid();
 };
