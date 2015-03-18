@@ -3,6 +3,7 @@
 #include <fstream>
 #include <vector>
 #include <chrono>
+#include <time.h>
 #include <thread>
 #include "bug.h"
 #include "manager.h"
@@ -113,8 +114,10 @@ int main(){
 	readAphConfig();
 	readlBugConfig();
 	readSimConfig();
+	srand(time(0)); //Ensures rand fuction makes new random numbers every time
 	manager myMan(createAphids, createLBugs, board_x, board_y);
 	myMan.printBoard();
+	myMan.updateGrid();
 	cin.get();
 }
 

@@ -18,7 +18,7 @@ manager::manager(vector<aphid> createAphids, vector<ladybug> createLadybugs, int
 	lBugs = createLadybugs;	 //Creates a local instance of the ladybugs vector
 }
 
-//----------------------PRINTS BOARD----------------------------
+//----------------------PRINTS BOARD-----------------------------
 void manager::printBoard(){
 	//Creates vector of vectors (2d board) the size the the read-in file defines
 	vector<string> x(board_x, "[  ]");
@@ -61,6 +61,13 @@ void manager::printBoard(){
 	}
 }
 
-void manager::update(){
-
+//----------------------UPDATE METHOD----------------------------
+void manager::updateGrid(){
+	//Iterates through vector of aphid objects, updating each in turn
+	for (vector<aphid>::iterator AphIt = this->aphids.begin(); AphIt != this->aphids.end(); AphIt++){
+		(*AphIt).update(board_x,board_y);
+	}
+	printBoard();
+	cin.get();
+	updateGrid();
 }
