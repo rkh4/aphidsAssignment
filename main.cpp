@@ -8,25 +8,29 @@
 #include <thread>
 using namespace std;
 
-int board_x;
-int board_y;
-int aphid_count;
-int aphid_temp[2];
-aphid a;
-vector<aphid> aphids;
-int ladybug_count;
-int ladybug_temp[2];
-ladybug l;
-vector<ladybug> lBugs;
-float temp_Pm, temp_palB, temp_palN, temp_Pb; //Temporary floats for the aphid config file
-float temp_m, temp_b, temp_n, temp_p; //Temporary floats for the ladybud config file
-manager myMan;
 
-//Reads in simulation config file
+//Initialisation for aphids
+int aphid_count; //Aphid count
+aphid aphid_obj;
+vector<aphid> aphids; //Vector of aphid objects
+int aphid_temp_pos[2]; //Array that holds the x and y co-ords of an aphid
+
+//Initialisation for ladybugs
+int ladybug_count; //Ladybug count
+ladybug lBug_obj;
+vector<ladybug> lBugs; //Vector of ladybug objects
+int ladybug_temp_pos[2]; //Arrat holding x and y coordinates
+
+//Temporary variable initialisation
+float aphMoveProb, lbugKillProb, helpKillProb, aphGiveBirthProb; //Temporary floats for the aphid config file
+float lbugMoveProb, changeDirProb, aphKillProb, lbugGiveBithProb; //Temporary floats for the ladybud config file
+
+
+//----------------------CONFIG FILE READ IN------------------------
 void readSimConfig(){
 	cout << "Reading In file 1/3... ";
-	ifstream ifs;
-	ifs.open("simConfig.txt"); //Inputting text file
+	ifstream ifs; //Input file onject
+	ifs.open("simConfig.txt"); //Opening text file
 	
 	//Checks if file has been read correctly
 	if (ifs.is_open()){
@@ -36,56 +40,55 @@ void readSimConfig(){
 	}
 
 	//Read in board size
+	int board_x; //Width of the board
+	int board_y; //Height of the board
 	ifs >> board_x;
 	ifs >> board_y;
 	
 
-	//Read in Aphids
+//----------------------APHIDS READ IN------------------------------
 	ifs >> aphid_count;
-	int loop_count = 0; 
-	//Loops through the next few lines, adding aphids positons to a vector
+	int loop_count = 0; //Temporary loop variable
 	while (loop_count < aphid_count) {
-		ifs >> aphid_temp[0] >> aphid_temp[1]; //X then Y
-		(a).setPos(aphid_temp[0], aphid_temp[1]);
-		aphids.push_back(a);
+		ifs >> aphid_temp_pos[0] >> aphid_temp_pos[1]; //X then Y
+		(aphid_obj).setPos(aphid_temp_pos[0], aphid_temp_pos[1]);
+		aphids.push_back(aphid_obj);
 		loop_count++;
 	}
 
-	//Read in Ladybugs
+
+//-------------------LADYBUGS READ IN --------------------------------
 	ifs >> ladybug_count;
-	loop_count = 0;
+	loop_count = 0; //Temoporary loop variable
 	while (loop_count < ladybug_count) {
-		ifs >> ladybug_temp[0] >> ladybug_temp[1];
-		l.setPos(ladybug_temp[0], ladybug_temp[1]);
-		lBugs.push_back(l);
+		ifs >> ladybug_temp_pos[0] >> ladybug_temp_pos[1];
+		lBug_obj.setPos(ladybug_temp_pos[0], ladybug_temp_pos[1]);
+		lBugs.push_back(lBug_obj);
 		loop_count++;
 	}
 
-	//Close file again
+	//Close current file
 	ifs.close();
 }
-//Reads in aphid config file
+
+//---------------------APHID FILE READ IN------------------------
 void readAphConfig(){
 	cout << "Reading in file 2/3... ";
-	ifstream ifC;
-	ifC.open("aphConfig.txt");
+	ifstream inputFileA; //File input object
+	inputFileA.open("aphConfig.txt");
 
-	if (ifC.is_open()){
+	if (inputFileA.is_open()){
 		cout << "File read Successfully!" << endl;
 	} else {
 		cout << "Error reading file!" << endl;
 	};
 
-	ifC >> temp_Pm;
-	ifC >> temp_palB;
-	ifC >> temp_palN;
-	ifC >> temp_Pb;
-
-	myMan.set_a_Pm(temp_Pm); //dont pass in here, later, when object of aphid created, pass in all temp variables
-	myMan.set_a_pALb(temp_palB);
-	myMan.set_a_pALn(temp_palN);
-	myMan.set_a_Pb(temp_Pb);
+	inputFileA >> aphMoveProb;
+	inputFileA >> lbugKillProb;
+	inputFileA >> helpKillProb;
+	inputFileA >> aphGiveBirthProb;
 };
+
 //Reads in ladybug config file
 void readlBugConfig(){
 	cout << "Reading in file 3/3... ";
@@ -98,115 +101,34 @@ void readlBugConfig(){
 		cout << "Error reading file!" << endl;
 	};
 
-	ifL >> temp_m;
-	ifL >> temp_b;
-	ifL >> temp_n;
-	ifL >> temp_p;
-
-	myMan.set_l_Pm(temp_m); //dont pass here, later when ladybug called, pass in temps 
-	myMan.set_l_pALb(temp_b);
-	myMan.set_a_pALn(temp_n);
-	myMan.set_a_Pb(temp_p);
-}
-
-
-//Prints board
-void createBoard(){
-	//Creates vector of vectors (2d board) the size the the read-in file defines
-	vector<string> x(board_x, "[  ]");
-	vector<vector<string> > board(board_y, x);
-
-	int noAphids = 0;
-	int nolBugs = 0;
-
-	//Loops, and cell checks
-	cout << endl<<  "---------------------------------------------------" << endl;
-	for (int i = 0; i < board.size(); i++) {
-		for (int j = 0; j < board[i].size(); j++){
-			for (vector<aphid>::iterator ai = aphids.begin(); ai != aphids.end(); ai++){
-				if ((*ai).getX() == i && (*ai).getY() == j){
-					noAphids++;
-				}
-			}
-			for (vector<ladybug>::iterator li = lBugs.begin(); li != lBugs.end(); li++){
-				  if ((*li).getX() == i && (*li).getY() == j){
-				  nolBugs++;
-				  }
-
-				  }
-			if (noAphids >= 1 && nolBugs >= 1) {
-				cout << "|" << noAphids << "A" << nolBugs << "L";
-			}
-			else if (noAphids >= 1) {
-				cout << "|" << noAphids << "A  ";
-			}
-			else if (nolBugs >= 1){
-				cout << "|  " << nolBugs << "L";
-			}
-			else {
-				cout << "|    ";
-			}
-			noAphids = 0;
-			nolBugs = 0;
-		}
-		cout << "|" << endl << "---------------------------------------------------" << endl;
-	}
-}
-
-void m_update(){
-	while (0 == 0) {
-		for (vector<aphid>::iterator aphUD = aphids.begin(); aphUD != aphids.end(); aphUD++){
-			(*aphUD).update();
-		}
-		/*for (vector<ladybug>::iterator lBugUD = lBugs.begin(); lBugUD != lBugs.end(); lBugUD++){
-			(*lBugUD).update();
-		}*/
-		createBoard();
-		this_thread::sleep_for(std::chrono::milliseconds(1000));
-	}
+	ifL >> lbugMoveProb; //Probability of moving
+	ifL >> changeDirProb; //Probability of changing direction
+	ifL >> aphKillProb; //Probability to kill an aphid
+	ifL >> lbugGiveBithProb; //Probability to reproduce
 }
 
 int main(){
 	readSimConfig();
 	readAphConfig();
 	readlBugConfig();
-	createBoard();
-	m_update();
+
+	//m_update();
 	cin.get();
 }
 
 
 
-/* -----------------------------------------
-			OLD STUFF MAY NOT NEED
-   -----------------------------------------
-*/
-/*   string board[10][10] = {
-   { "-", "-", "-", "-", "-", "-", "-", "-", "-", "-" },
-   { "-", "-", "-", "-", "-", "-", "-", "-", "-", "-" },
-   { "-", "-", "-", "-", "-", "-", "-", "-", "-", "-" },
-   { "-", "-", "-", "-", "-", "-", "-", "-", "-", "-" },
-   { "-", "-", "-", "-", "-", "-", "-", "-", "-", "-" },
-   { "-", "-", "-", "-", "-", "-", "-", "-", "-", "-" },
-   { "-", "-", "-", "-", "-", "-", "-", "-", "-", "-" },
-   { "-", "-", "-", "-", "-", "-", "-", "-", "-", "-" },
-   { "-", "-", "-", "-", "-", "-", "-", "-", "-", "-" },
-   { "-", "-", "-", "-", "-", "-", "-", "-", "-", "-" },
-   };
 
-   //Prints Board
-   for (int i = 0; i < board_x; i++){
-   for (int j = 0; j < board_y; j++){
-   cout << board[i][j];
-   cout << " ";
-   }
-   cout << endl;
-   }
-
-
-   vector<int>::iterator i;
-   for (vector<string>::iterator i = board.begin(); i != board.end(); ++i) {
-   	cout << *i << endl;
-   }
-
-*/
+/*
+void m_update(){
+while (0 == 0) {
+for (vector<aphid>::iterator aphUD = aphids.begin(); aphUD != aphids.end(); aphUD++){
+(*aphUD).update();
+}
+for (vector<ladybug>::iterator lBugUD = lBugs.begin(); lBugUD != lBugs.end(); lBugUD++){
+(*lBugUD).update();
+}
+createBoard();
+this_thread::sleep_for(std::chrono::milliseconds(1000));
+}
+}*/

@@ -11,11 +11,16 @@ float Pm;
 aphid::aphid(){
 	pos[0] = 0;
 	pos[1] = 0;
-};
 
-void aphid::setPos(int temp_x,int temp_y) {
-	this->pos[0] = temp_x; //X
-	this->pos[1] = temp_y; //Y
+}
+
+aphid::aphid(int Xpos, int Ypos, float moveProb, float lbugKillProb, float helpKillProb, float aphGiveBirthProb){
+	this->pos[0] = Xpos;
+	this->pos[1] = Ypos;
+	this->moveProb = moveProb;
+	this->lbugKillProb = lbugKillProb;
+	this->helpKillProb = helpKillProb;
+	this->aphGiveBirthProb = aphGiveBirthProb;
 }
 
 int aphid::getX() {
@@ -24,6 +29,12 @@ int aphid::getX() {
 
 int aphid::getY() {
 	return this->pos[1];
+}
+
+void aphid::setPos(int temp_x, int temp_y)
+{
+	this->pos[0] = temp_x;
+	this->pos[1] = temp_y;
 }
 
 void aphid::moveDirection() {

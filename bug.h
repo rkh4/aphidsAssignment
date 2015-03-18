@@ -6,6 +6,7 @@ using namespace std;
 
 //Base class
 class bug {
+private:
 public:
 	bug();
 	int pos[2]; //x,y
@@ -15,7 +16,6 @@ public:
 	void setY(int y_pos);
 	int getX();
 	int getY();
-	pair<int, int> getPos();
 	void update();
 	//~bug(); //got to impliment if you include
 };
@@ -23,12 +23,17 @@ public:
 
 class aphid : public bug {
 private:
-
+	float moveProb = 0.0;
+	float lbugKillProb = 0.0;
+	float helpKillProb = 0.0;
+	float aphGiveBirthProb = 0.0;
 public:
-	aphid();
-	void setPos(int,int);
+	aphid(); //Default constructor
+	//~aphid(); //Destructor
+	aphid(int Xpos, int Ypos, float moveProb, float lbugKillProb, float helpKillProb, float aphGiveBirthProb);
 	int getX();
 	int getY();
+	void setPos(int, int);
 	void moveDirection();
 	void update();
 	//~aphid();
