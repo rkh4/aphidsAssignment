@@ -1,5 +1,6 @@
 using namespace std;
 #include "bug.h"
+#include <stdlib.h>
 #include <iostream>
 //#include <time.h>
 #include <stdlib.h>

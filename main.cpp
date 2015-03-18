@@ -3,6 +3,8 @@
 #include <fstream>
 #include <vector>
 #include <chrono>
+#include <stdio.h>
+#include <stdlib.h>
 #include <time.h>
 #include <thread>
 #include "bug.h"
