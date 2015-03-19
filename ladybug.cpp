@@ -235,8 +235,22 @@ void ladybug::moveDirection(int board_x, int board_y){
 	}
 }
 
+//Function that returns the probability of giving birth
 float ladybug::getGiveBirthProb(){
 	return this->lBugGiveBirthProb;
+}
+
+//Function that removes life turn-by-turn
+//	also checks if the bug is dead or not
+bool ladybug::isDead(){
+	this->lBugLife -= 10;
+	if (this->lBugLife <= 0){
+		this->lBugDead = true;
+		return true;
+	}
+	else {
+		return false;
+	}
 }
 
 void ladybug::update(int board_x, int board_y){

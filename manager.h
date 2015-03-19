@@ -13,6 +13,8 @@ private:
 	vector<ladybug> lBugs;		//Vector of all ladybugs
 	vector<aphid> newAphids;	//Temporary vector of aphids for when reproduction takes place
 	vector<ladybug> newlBugs;	//Temporary ladybug vector, holding all newborns
+	vector<aphid> delAphid;
+	vector<ladybug> delLBug;
 public:
 	manager(); //Default constructor
 	manager(vector<aphid> createAphids,vector<ladybug> createLadybugs, int board_x, int board_y);

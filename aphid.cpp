@@ -98,17 +98,40 @@ void aphid::moveDirection(int board_x, int board_y) {
 	}
 };
 
+//Function that removes life turn-by-turn
+//	also checks if the bug is dead or not
+bool aphid::isDead(){
+	this->aphidLife -= 4;
+	if (this->aphidLife <= 0){
+		this->aphidDead = true;
+		return true;
+	}
+	else {
+		return false;
+	}
+}
+
+//Aphid fighting a ladybug
+bool aphid::fightLBug(int aphidCount){
+	float probOfWin = (this->lbugKillProb + ((aphidCount -1)* helpKillProb));
+	float randomProb = rand() % 10;
+	if ((probOfWin * 10) > randomProb){
+		return true;
+	}
+	else return false;
+
+}
+
+//Function returns the probability of giving birth
 float aphid::getGiveBirthProb(){
 	return this->aphGiveBirthProb;
 }
 
 //-----------------UPDATES APHID OBJECT-------------------------
 void aphid::update(int board_x,int board_y){ 
-	int rand1 = rand() % 10;
-	if ((this->moveProb*10) >= rand1) {
-		//cout << "Aphid moved" << endl;
-		moveDirection(board_x, board_y);
-	} else {
-		//cout << "Aphid did not move" << endl;
+		int rand1 = rand() % 10;
+		if ((this->moveProb * 10) >= rand1) {
+			//cout << "Aphid moved" << endl;
+			moveDirection(board_x, board_y);
 	}
 };

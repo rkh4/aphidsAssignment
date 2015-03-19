@@ -26,12 +26,16 @@ public:
 	float lbugKillProb = 0.0; //Probability that it will kill a ladybug
 	float helpKillProb = 0.0; //Increase in probability depending on how many aphids
 	float aphGiveBirthProb = 0.0; //Probability aphid will reproduce
+	int aphidLife = 100; //Life initialisation
+	bool aphidDead = false;
 
 	//Methods
 	aphid(); //Default constructor
 	aphid(int Xpos, int Ypos, float moveProb, float lbugKillProb, float helpKillProb, float aphGiveBirthProb);
 	float getGiveBirthProb(); //Returns the probability of reproducing
 	void moveDirection(int board_x, int board_y);
+	bool isDead();
+	bool fightLBug(int aphidCount);
 	void update(int board_x, int board_y);
 	//~aphid(); //Destructor
 };
@@ -40,7 +44,7 @@ public:
 //------------------LADYBUG CLASS-----------------------
 class ladybug : public bug {
 private:
-
+	
 public:
 	//Variable Initialisation
 	int preferredDirection = 0; //North/ East/ South/ West
@@ -48,11 +52,14 @@ public:
 	float changeDirProb = 0.0;	//Probability that the preferred direction will change
 	float aphKillProb = 0.0;	//Probability of killing aphid
 	float lBugGiveBirthProb = 0.0; //Probability of giving birth
+	int lBugLife = 500; //Life Initialisation
+	bool lBugDead = false;
 
 	//Methods
 	ladybug(); //Defeault constructor
 	ladybug(int Xpos, int Ypos, float moveProb, float changeDir, float aphKill, float giveBirthProb, int preferredDirection);
 	void newPreferredDirection(); 
+	bool isDead();
 	float getGiveBirthProb(); //Returns the probability of giving birth
 	void moveDirection(int board_x, int board_y);
 	void update(int board_x, int board_y);
