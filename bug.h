@@ -16,7 +16,7 @@ public:
 	//~bug(); //Destructor
 };
 
-//------------------APHID------------------------------
+//------------------APHID CLASS ------------------------
 class aphid : public bug {
 private:
 	float moveProb = 0.0;
@@ -33,7 +33,7 @@ public:
 };
 
 
-//------------------LADYBUG-------------------------------
+//------------------LADYBUG CLASS-----------------------
 class ladybug : public bug {
 private:
 	float lBugMoveProb = 0.0;
@@ -44,7 +44,7 @@ private:
 public:
 	ladybug(); //Defeault constructor
 	ladybug(int Xpos, int Ypos, float moveProb, float changeDir, float aphKill, float giveBirthProb);
-	int newPreferredDirection();
+	void newPreferredDirection();
 	void moveDirection();
 	void update();	
 	//~ladybug(); //Destructor

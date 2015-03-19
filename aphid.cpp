@@ -9,12 +9,14 @@ using namespace std;
 
 float Pm;
 
+//-----------------------DEFAULT CONSTRUCTOR-----------------------
 aphid::aphid(){
 	pos[0] = 0;
 	pos[1] = 0;
 
 }
 
+//--------------------SET LOCAL OBJECT VARIABLES-------------------
 aphid::aphid(int Xpos, int Ypos, float moveProb, float lbugKillProb, float helpKillProb, float aphGiveBirthProb){
 	this->pos[0] = Xpos;
 	this->pos[1] = Ypos;
@@ -24,8 +26,9 @@ aphid::aphid(int Xpos, int Ypos, float moveProb, float lbugKillProb, float helpK
 	this->aphGiveBirthProb = aphGiveBirthProb;
 }
 
+//----------------CHANGES APHID POSITION------------------------
 void aphid::moveDirection(int board_x, int board_y) {
-	//unsigned int randomNum = randomNo;
+	//Random number, to determine which direction to move
 	int moveNum = rand() % 8;
 
 	//Checks if on the left border
@@ -57,6 +60,7 @@ void aphid::moveDirection(int board_x, int board_y) {
 		}
 	}
 
+	//Checks the random number, moves aphid accordingly
 	switch (moveNum) {
 	case(0) :
 		//Decrement Y by 1, moving up
@@ -97,11 +101,12 @@ void aphid::moveDirection(int board_x, int board_y) {
 	}
 };
 
-void aphid::update(int board_x,int board_y){ //get update method to take in a value (x,y) so that you can check if at edge of board
+//-----------------UPDATES APHID OBJECT-------------------------
+void aphid::update(int board_x,int board_y){ 
 	int rand1 = rand() % 10;
 	if ((this->moveProb*10) >= rand1) {
 		cout << "Aphid moved" << endl;
-		int randomNo = rand() % (8);
+		//int randomNo = rand() % (8);
 		moveDirection(board_x, board_y);
 	} else {
 		cout << "Aphid did not move" << endl;

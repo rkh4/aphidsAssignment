@@ -7,11 +7,13 @@ using namespace std;
 
 //Derived class of bug
 
+//-----------------------DEFAULT CONSTRUCTOR--------------------
 ladybug::ladybug(){
 	pos[0] = 0;
 	pos[1] = 0;
 };
 
+//-----------------SET LOCAL OBJECT VARIABLES-------------------
 ladybug::ladybug(int Xpos, int Ypos, float moveProb, float changeDir, float aphKill, float giveBirthProb){
 	this->pos[0] = Xpos;
 	this->pos[1] = Ypos;
@@ -22,29 +24,33 @@ ladybug::ladybug(int Xpos, int Ypos, float moveProb, float changeDir, float aphK
 }
 
 
-//Chosing ladybugs initial direction, N/E/S/W
-int ladybug::newPreferredDirection(){
+//--------------SETS LADYBUG PREFERRED DIRECTION---------------
+void ladybug::newPreferredDirection(){
 	int randNo = rand() % 4;
 	switch (randNo) {
-		case(0):
-			return 1; //North
-			break;
-		case(1):
-			return 2; //East
-			break;
-		case(2):
-			return 3; //South
-			break;
-		case(3):
-			return 4; //West
-			break;
+	case(0) :
+		//North
+		this->preferredDirection = 1;
+		break;
+	case(1) :
+		//East
+		this->preferredDirection = 2;
+		break;
+	case(2) :
+		//South
+		this->preferredDirection = 3;
+		break;
+	case(3) :
+		//West
+		this->preferredDirection = 4;
+		break;
 	}
 };
 
 
-//Selects which of the three preffered directions (based on initial) to move.
+//-------------------UPDATES LADYBUG POSITION------------------
 void ladybug::moveDirection(){
-	//North: Preferred direction
+	//------------------------NORTH-------------------------
 	if (this->preferredDirection == 1){
 		int subDirection = rand() % 3;
 		switch (subDirection) {
@@ -64,7 +70,7 @@ void ladybug::moveDirection(){
 			break;
 		}
 	}
-	//East: Preferred direction
+	//------------------------EAST--------------------------
 	else if (this->preferredDirection == 2){
 		int subDirection = rand() % 3;
 		switch (subDirection) {
@@ -73,40 +79,77 @@ void ladybug::moveDirection(){
 			this->pos[0]++;
 			break;
 		case(1) :
+			//Move down-right 
+			this->pos[1]++;
+			this->pos[0]++;
+			break;
+		case(2) :
 			//Move up-right
+			this->pos[1]--;
+			this->pos[0]++;
+			break;
+		}
+	}
+	//---------------------SOUTH----------------------------
+	else if (this->preferredDirection == 3){
+		int subDirection = rand() % 3;
+		switch (subDirection) {
+		case(0) :
+			//Move down
+			this->pos[1]--;
+			break;
+		case(1) :
+			//Move down-right
 			this->pos[0]++;
 			this->pos[1]--;
 			break;
 		case(2) :
-			//Move down-righ
-			this->pos[0]++;
+			//Move down-left
+			this->pos[0]--;
 			this->pos[1]--;
 			break;
 		}
 	}
-	else if (this->preferredDirection == 3){
-
-	}
+	//------------------------WEST--------------------------
 	else if (this->preferredDirection == 4){
-
+		int subDirection = rand() % 3;
+		switch (subDirection) {
+		case(0) :
+			//Move left
+			this->pos[0]--;
+			break;
+		case(1) :
+			//Move up-left
+			this->pos[0]--;
+			this->pos[1]--;
+			break;
+		case(2) :
+			//Move down-left
+			this->pos[0]--;
+			this->pos[1]--;
+			break;
+		}
 	}
-
-	/*randNo = rand() % 3;
-	switch(randNo){
-		case(1):
-			return 1; 
-			break;
-		case(2):
-			return 2;
-			break;
-		case(3):
-			return 3;
-			break;
-	}*/	
 }
 
+
 void ladybug::update(){
-	
-
-
+	//Checking the probability of the bug moving
+	int tempMoveProb = rand() % 10;
+	if ((this->lBugMoveProb*10) >= tempMoveProb) {
+		cout << "Ladybug moved" << endl;
+		//Checking probability that preffered direction changes
+		tempMoveProb = rand() % 10;
+		if ((this->changeDirProb*10) >= tempMoveProb){
+			cout << "Ladybug changed direction" << endl;
+			newPreferredDirection();
+			moveDirection();
+		}
+		else {
+			moveDirection();
+		}
+	}
+	else {
+		cout << "Ladybug did not move" << endl;
+	}
 }

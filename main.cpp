@@ -122,21 +122,4 @@ int main(){
 	myMan.updateGrid();
 	cin.get();
 }
-
-
-
-
-
-/*
-void m_update(){
-while (0 == 0) {
-for (vector<aphid>::iterator aphUD = aphids.begin(); aphUD != aphids.end(); aphUD++){
-(*aphUD).update();
-}
-for (vector<ladybug>::iterator lBugUD = lBugs.begin(); lBugUD != lBugs.end(); lBugUD++){
-(*lBugUD).update();
-}
-createBoard();
-this_thread::sleep_for(std::chrono::milliseconds(1000));
-}
-}*/
+//this_thread::sleep_for(std::chrono::milliseconds(1000));

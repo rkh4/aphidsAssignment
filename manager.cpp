@@ -10,12 +10,16 @@ manager::manager(){
 }
 
 //--------------------SETTING LOCAL VARIABLES--------------------
-//Takes parameters from main, sets the local variables
+//Takes parameters from main, sets the local variables, creates local vectors
 manager::manager(vector<aphid> createAphids, vector<ladybug> createLadybugs, int board_x, int board_y){
 	this->board_x = board_x; //The width of the board
 	this->board_y = board_y; //The height of the board
 	aphids = createAphids;	 //Creates a local instance of the aphids vector
 	lBugs = createLadybugs;	 //Creates a local instance of the ladybugs vector
+	//Initialises the preffered direction of all ladybugs
+	for (vector<ladybug>::iterator lBugIt = this->lBugs.begin(); lBugIt != this->lBugs.end(); lBugIt++){
+		(*lBugIt).newPreferredDirection();
+	}
 }
 
 //----------------------PRINTS BOARD-----------------------------
@@ -69,6 +73,7 @@ void manager::updateGrid(){
 	}
 	for (vector<ladybug>::iterator lBugIt = this->lBugs.begin(); lBugIt != this->lBugs.end(); lBugIt++){
 		(*lBugIt).newPreferredDirection();
+		(*lBugIt).update();
 	}
 	//iterate through ladybugs
 	//call newPreferredDirection
