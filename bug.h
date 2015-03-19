@@ -27,8 +27,8 @@ public:
 	float aphGiveBirthProb = 0.0;
 	aphid(); //Default constructor
 	aphid(int Xpos, int Ypos, float moveProb, float lbugKillProb, float helpKillProb, float aphGiveBirthProb);
-	float getlBugKillProb();
-	float getGiveBirthProb();
+	float getlBugKillProb(); //pointless now?  check
+	float getGiveBirthProb(); 
 	void moveDirection(int board_x, int board_y);
 	void update(int board_x, int board_y);
 	//~aphid(); //Destructor
@@ -47,6 +47,7 @@ public:
 	ladybug(); //Defeault constructor
 	ladybug(int Xpos, int Ypos, float moveProb, float changeDir, float aphKill, float giveBirthProb);
 	void newPreferredDirection();
+	float getGiveBirthProb();
 	void moveDirection(int board_x, int board_y);
 	void update(int board_x, int board_y);
 	//~ladybug(); //Destructor

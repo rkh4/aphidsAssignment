@@ -25,7 +25,7 @@ manager::manager(vector<aphid> createAphids, vector<ladybug> createLadybugs, int
 //----------------------PRINTS BOARD-----------------------------
 void manager::printBoard(){
 	//Creates vector of vectors (2d board) the size the the read-in file defines
-	vector<string> x(board_x, "[  ]");
+	vector<string> x(board_x, "");
 	vector<vector<string> > board(board_y, x);
 	
 	int noAphids = 0;
@@ -57,9 +57,10 @@ void manager::printBoard(){
 						float giveBirthProb = (*li).getGiveBirthProb();
 						int randomChance = rand() % 10;
 						if ((giveBirthProb * 10) >= randomChance){
+							cout << "new lbug born!";
 							//Adds new aphid to a temporary array
-							aphid tempAphid((*li).pos[0], (*li).pos[1], (*li).moveProb, (*li).lbugKillProb, (*li).helpKillProb, (*li).aphGiveBirthProb);
-							newAphids.push_back(tempAphid);
+							ladybug templBug((*li).pos[0], (*li).pos[1], (*li).lBugMoveProb, (*li).changeDirProb, (*li).aphKillProb, (*li).lBugGiveBirthProb);
+							newlBugs.push_back(templBug);
 						}
 						
 					}
@@ -79,13 +80,8 @@ void manager::printBoard(){
 				if ( > 1) { checks probability to kill bug, 
 
 				if AphKill (returns true) { iterator erase (*ai); }
-
 				*/
-			//}
-
-			//if (noLBugs > 1){ (*li).lBugReproduce() }
-
-
+			
 			if (noAphids >= 1 && nolBugs >= 1) {
 				cout << "|" << noAphids << "A" << nolBugs << "L";
 			}
@@ -115,6 +111,14 @@ void manager::updateGrid(){
 	for (vector<ladybug>::iterator lBugIt = this->lBugs.begin(); lBugIt != this->lBugs.end(); lBugIt++){
 		(*lBugIt).update(board_x,board_y);
 	}
+
+	//STILL NEED TO FIX LADYBUGS GOING OUT OF RANGE
+
+	//Temporary vector, holds values of new ladybugs that are to be added next turn
+	for (vector<ladybug>::iterator newlBugIt = newlBugs.begin(); newlBugIt != newlBugs.end(); newlBugIt++){
+		newlBugs.push_back(*newlBugIt);
+	}
+	newlBugs.clear();
 
 	//Temporary vector, holds the values of new aphids, ready to be added next turn
 	for (vector<aphid>::iterator newAphIt = newAphids.begin(); newAphIt != newAphids.end(); newAphIt++){

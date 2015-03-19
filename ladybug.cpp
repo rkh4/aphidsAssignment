@@ -152,6 +152,10 @@ void ladybug::moveDirection(int board_x, int board_y){
 }
 
 
+float ladybug::getGiveBirthProb(){
+	return this->lBugGiveBirthProb;
+}
+
 void ladybug::update(int board_x, int board_y){
 	//Checking the probability of the bug moving
 	int tempMoveProb = rand() % 10;

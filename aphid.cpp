@@ -113,10 +113,9 @@ float aphid::getGiveBirthProb(){
 void aphid::update(int board_x,int board_y){ 
 	int rand1 = rand() % 10;
 	if ((this->moveProb*10) >= rand1) {
-		cout << "Aphid moved" << endl;
-		//int randomNo = rand() % (8);
+		//cout << "Aphid moved" << endl;
 		moveDirection(board_x, board_y);
 	} else {
-		cout << "Aphid did not move" << endl;
+		//cout << "Aphid did not move" << endl;
 	}
 };
