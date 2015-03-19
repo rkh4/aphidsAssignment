@@ -14,13 +14,14 @@ ladybug::ladybug(){
 };
 
 //-----------------SET LOCAL OBJECT VARIABLES-------------------
-ladybug::ladybug(int Xpos, int Ypos, float moveProb, float changeDir, float aphKill, float giveBirthProb){
+ladybug::ladybug(int Xpos, int Ypos, float moveProb, float changeDir, float aphKill, float giveBirthProb, int preferredDirection){
 	this->pos[0] = Xpos;
 	this->pos[1] = Ypos;
 	this->lBugMoveProb = moveProb;
 	this->changeDirProb = changeDir;
 	this->aphKillProb = aphKill;
 	this->lBugGiveBirthProb = giveBirthProb;
+	this->preferredDirection = preferredDirection;
 }
 
 

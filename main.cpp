@@ -110,11 +110,12 @@ void readSimConfig(){
 	//-------------------LADYBUGS READ IN --------------------------------
 	ifs >> ladybug_count;
 	loop_count = 0; //Temoporary loop variable
+	int preferredDirection = 1;
 	//Creates temporary ladybug object, fills parameters, and pushes onto vector of ladybugs
 	while (loop_count < ladybug_count) {
 		ifs >> ladybug_temp_pos[0] >> ladybug_temp_pos[1];
 		ladybug tmpLBug(ladybug_temp_pos[0], ladybug_temp_pos[1], 
-			lbugMoveProb,changeDirProb,aphKillProb,lbugGiveBithProb);
+			lbugMoveProb,changeDirProb,aphKillProb,lbugGiveBithProb,preferredDirection);
 		createLBugs.push_back(tmpLBug);
 		loop_count++;
 	}

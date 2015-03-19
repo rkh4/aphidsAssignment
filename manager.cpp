@@ -54,7 +54,6 @@ void manager::printBoard(){
 								(*ai).lbugKillProb, (*ai).helpKillProb, (*ai).aphGiveBirthProb);
 							newAphids.push_back(tempAphid);
 						}
-
 					}
 				}
 			}
@@ -64,17 +63,14 @@ void manager::printBoard(){
 				if ((*li).getX() == i && (*li).getY() == j){
 					nolBugs++;
 					if (nolBugs > 1) {
-						float giveBirthProb = (*li).getGiveBirthProb();
-						int randomChance = rand() % 10;
-						if ((giveBirthProb * 10) >= randomChance){
-							cout << "new lbug born!";
+						float giveBirth = (*li).getGiveBirthProb();
+						int random = rand() % 10;
+						if ((giveBirth * 10) >= random){
 							//Adds new aphid to a temporary array
-							//ladybug templBug((*li).pos[0], (*li).pos[1], (*li).lBugMoveProb, (*li).changeDirProb, (*li).aphKillProb, (*li).lBugGiveBirthProb);
-							//newlBugs.push_back(templBug);
-							//}
-
+							ladybug templBug((*li).pos[0], (*li).pos[1], (*li).lBugMoveProb,
+								(*li).changeDirProb, (*li).aphKillProb, (*li).lBugGiveBirthProb,(*li).preferredDirection);
+							newlBugs.push_back(templBug);
 						}
-
 					}
 				}
 			}
@@ -124,19 +120,17 @@ void manager::updateGrid(){
 		(*lBugIt).update(board_x,board_y);
 	}
 
-	//STILL NEED TO FIX LADYBUGS GOING OUT OF RANGE
-
-	//Temporary vector, holds values of new ladybugs that are to be added next turn
-	for (vector<ladybug>::iterator newlBugIt = newlBugs.begin(); newlBugIt != newlBugs.end(); newlBugIt++){
-		newlBugs.push_back(*newlBugIt);
-	}
-	newlBugs.clear(); //Clears the vector ready for the next turn
-
 	//Temporary vector, holds the values of new aphids, ready to be added next turn
 	for (vector<aphid>::iterator newAphIt = newAphids.begin(); newAphIt != newAphids.end(); newAphIt++){
 		aphids.push_back(*newAphIt);
 	}
 	newAphids.clear(); //Clears the vector, so aphids are only added once
+
+	//Temporary vector, holds values of new ladybugs that are to be added next turn
+	for (vector<ladybug>::iterator newlBugIt = newlBugs.begin(); newlBugIt != newlBugs.end(); newlBugIt++){
+		lBugs.push_back(*newlBugIt);
+	}
+	newlBugs.clear(); //Clears the vector ready for the next turn
 
 	printBoard();
 	cin.get();

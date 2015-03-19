@@ -40,9 +40,10 @@ public:
 //------------------LADYBUG CLASS-----------------------
 class ladybug : public bug {
 private:
-	int preferredDirection = 0; //North/ East/ South/ West
+
 public:
 	//Variable Initialisation
+	int preferredDirection = 0; //North/ East/ South/ West
 	float lBugMoveProb = 0.0;	//Probability of moving
 	float changeDirProb = 0.0;	//Probability that the preferred direction will change
 	float aphKillProb = 0.0;	//Probability of killing aphid
@@ -50,7 +51,7 @@ public:
 
 	//Methods
 	ladybug(); //Defeault constructor
-	ladybug(int Xpos, int Ypos, float moveProb, float changeDir, float aphKill, float giveBirthProb);
+	ladybug(int Xpos, int Ypos, float moveProb, float changeDir, float aphKill, float giveBirthProb, int preferredDirection);
 	void newPreferredDirection(); 
 	float getGiveBirthProb(); //Returns the probability of giving birth
 	void moveDirection(int board_x, int board_y);
