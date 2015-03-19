@@ -2,11 +2,8 @@ using namespace std;
 #include "bug.h"
 #include <stdlib.h>
 #include <iostream>
-//#include <time.h>
 #include <stdlib.h>
-#include <stdio.h>
-//#include <random>
-//#include <ctime>
+
 
 //Derived class of bug
 
@@ -27,7 +24,7 @@ ladybug::ladybug(int Xpos, int Ypos, float moveProb, float changeDir, float aphK
 
 //Chosing ladybugs initial direction, N/E/S/W
 int ladybug::newPreferredDirection(){
-	int randNo = rand();
+	int randNo = rand() % 4;
 	switch (randNo) {
 		case(0):
 			return 1; //North
@@ -47,11 +44,45 @@ int ladybug::newPreferredDirection(){
 
 //Selects which of the three preffered directions (based on initial) to move.
 void ladybug::moveDirection(){
+	//North: Preferred direction
 	if (this->preferredDirection == 1){
-
+		int subDirection = rand() % 3;
+		switch (subDirection) {
+		case(0) :
+			//Decrement Y by 1, moving up
+			this->pos[1]--;
+			break;
+		case(1) :
+			//Decrement Y, Incriment X, move up-right
+			this->pos[1]--;
+			this->pos[0]++;
+			break;
+		case(2) :
+			//Move up-left
+			this->pos[1]--;
+			this->pos[0]--;
+			break;
+		}
 	}
+	//East: Preferred direction
 	else if (this->preferredDirection == 2){
-
+		int subDirection = rand() % 3;
+		switch (subDirection) {
+		case(0) :
+			//Move right
+			this->pos[0]++;
+			break;
+		case(1) :
+			//Move up-right
+			this->pos[0]++;
+			this->pos[1]--;
+			break;
+		case(2) :
+			//Move down-righ
+			this->pos[0]++;
+			this->pos[1]--;
+			break;
+		}
 	}
 	else if (this->preferredDirection == 3){
 

@@ -4,10 +4,6 @@ using namespace std;
 #include <iostream>
 #include <time.h>
 #include <stdlib.h>
-#include <stdio.h>
-#include <random>
-#include <ctime>
-//#include <stdlib.h>
 
 //Derived class of Bug
 
@@ -28,40 +24,40 @@ aphid::aphid(int Xpos, int Ypos, float moveProb, float lbugKillProb, float helpK
 	this->aphGiveBirthProb = aphGiveBirthProb;
 }
 
-void aphid::moveDirection(int board_x, int board_y, int randomNo) {
+void aphid::moveDirection(int board_x, int board_y) {
 	//unsigned int randomNum = randomNo;
-	randomNo = rand() % 8;
+	int moveNum = rand() % 8;
 
 	//Checks if on the left border
 	if (this->pos[0] == 1) {
-		if (randomNo == 5 || randomNo == 6 || randomNo == 7){
+		if (moveNum == 5 || moveNum == 6 || moveNum == 7){
 			cout << "Trying to move out of spec, Re-rolling" << endl;
-			moveDirection(board_x,board_y, randomNo);
+			moveNum = 2;
 		}
 	}
 	//Checks if on the right border
 	if (this->pos[0] == (board_x - 1)){
-		if (randomNo == 1 || randomNo == 2 || randomNo == 3){
+		if (moveNum == 1 || moveNum == 2 || moveNum == 3){
 			cout << "Trying to move out of spec, Re-rolling" << endl;
-			moveDirection(board_x,board_y, randomNo);
+			moveNum = 6;
 		}
 	}
 	//Checks if on the bottom border
 	if (this->pos[1] == (board_y - 1)){
-		if (randomNo == 3 || randomNo == 4 || randomNo == 5){
+		if (moveNum == 3 || moveNum == 4 || moveNum == 5){
 			cout << "Trying to move out of spec, Re-rolling" << endl;
-			moveDirection(board_x,board_y, randomNo);
+			moveNum = 0;
 		}
 	}
 	//Checks if on the top border
 	if (this->pos[1] == 1){
-		if (randomNo == 7 || randomNo == 0 || randomNo == 1){
+		if (moveNum == 7 || moveNum == 0 || moveNum== 1){
 			cout << "Trying to move out of spec, Re-rolling" << endl;
-			moveDirection(board_x,board_y, randomNo);
+			moveNum = 4;
 		}
 	}
 
-	switch (randomNo) {
+	switch (moveNum) {
 	case(0) :
 		//Decrement Y by 1, moving up
 		this->pos[1]--;
@@ -102,11 +98,11 @@ void aphid::moveDirection(int board_x, int board_y, int randomNo) {
 };
 
 void aphid::update(int board_x,int board_y){ //get update method to take in a value (x,y) so that you can check if at edge of board
-	int rand1 = rand() % (10);
+	int rand1 = rand() % 10;
 	if ((this->moveProb*10) >= rand1) {
 		cout << "Aphid moved" << endl;
 		int randomNo = rand() % (8);
-		moveDirection(board_x, board_y, randomNo);
+		moveDirection(board_x, board_y);
 	} else {
 		cout << "Aphid did not move" << endl;
 	}

@@ -27,7 +27,7 @@ public:
 	aphid(); //Default constructor
 	aphid(int Xpos, int Ypos, float moveProb, float lbugKillProb, float helpKillProb, float aphGiveBirthProb);
 	void setPos(int, int);
-	void moveDirection(int board_x, int board_y, int randomNum);
+	void moveDirection(int board_x, int board_y);
 	void update(int board_x, int board_y);
 	//~aphid(); //Destructor
 };
