@@ -1,0 +1,37 @@
+intro
+--------------
+
+
+design
+---------------
+Could have been improved in the beginning would have improved things
+
+
+
+
+issues & improvements
+--------------------------------
+layout, variable names
+
+Initially I had lots of issues with the program, as when I created it, I did very little planning, and just went ahead and started implimenting it. However later I created a class diagram; with which i started to properly impliment my program.
+
+Originally I was going to use a 2D array to represent the cells, however that was proving exceedingly difficult, partially due to when 2D arrays are created, they need to have a static size, but I was attempting to use an integer variable (one the size of the config file).
+
+I choose to use arrays for my assignment. Firstly the board vector is a vector of vectors (or 2D vector) however as a vectors size can either change, or remain undefined until data is added, it made them much more suitable to my needs.
+
+One of the problems I had with vectors, was passing them from one class to another, for example where the 'main.cpp' reads in all aphid data, and stores that data in a vector, I had to pass it through to the 'manager' class. In the end I did this by passing in both of the vectors as well as the board size, when I created the manaager object.
+
+One of the largest issues I had with the early implimentation of this project was the rand() function, this was giving me several problems. Initially the modulo definition on this rand (rand()%10) was coming back with a number that couldnt possibly be correct, in the thousands, which turned out to be a temporary error with my IDE. Also the rand() function, every time I restarted the program, would define the same random number each time. This is due to seeds in the rand function, and I got around it by including the <time.h> library, and calling srand(time(0)); in the main.cpp file.
+
+implimentation of features
+------------------
+
+
+extra features-
+------------------------
+
+
+
+
+self evaluation
+-----------------------

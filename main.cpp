@@ -9,6 +9,7 @@
 using namespace std;
 
 
+
 //Initialisation for aphids
 int aphid_count; //Aphid count
 vector<aphid> createAphids; //Vector of aphid objects
@@ -132,5 +133,5 @@ int main(){
 	manager myMan(createAphids, createLBugs, board_x, board_y);
 	myMan.printBoard();
 	myMan.updateGrid();
-	cin.get();
+	cin.get();	
 }
