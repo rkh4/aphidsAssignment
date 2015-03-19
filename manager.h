@@ -11,6 +11,7 @@ private:
 	int board_y = 0;
 	vector<aphid> aphids;
 	vector<ladybug> lBugs;
+	vector<aphid> newAphids;
 public:
 	manager(); //Default constructor
 	manager(vector<aphid> createAphids,vector<ladybug> createLadybugs, int board_x, int board_y);

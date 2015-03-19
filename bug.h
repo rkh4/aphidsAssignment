@@ -19,13 +19,16 @@ public:
 //------------------APHID CLASS ------------------------
 class aphid : public bug {
 private:
+	
+public:
 	float moveProb = 0.0;
 	float lbugKillProb = 0.0;
 	float helpKillProb = 0.0;
 	float aphGiveBirthProb = 0.0;
-public:
 	aphid(); //Default constructor
 	aphid(int Xpos, int Ypos, float moveProb, float lbugKillProb, float helpKillProb, float aphGiveBirthProb);
+	float getlBugKillProb();
+	float getGiveBirthProb();
 	void moveDirection(int board_x, int board_y);
 	void update(int board_x, int board_y);
 	//~aphid(); //Destructor
@@ -35,12 +38,12 @@ public:
 //------------------LADYBUG CLASS-----------------------
 class ladybug : public bug {
 private:
+	int preferredDirection = 0;
+public:
 	float lBugMoveProb = 0.0;
 	float changeDirProb = 0.0;
 	float aphKillProb = 0.0;
 	float lBugGiveBirthProb = 0.0;
-	int preferredDirection = 0;
-public:
 	ladybug(); //Defeault constructor
 	ladybug(int Xpos, int Ypos, float moveProb, float changeDir, float aphKill, float giveBirthProb);
 	void newPreferredDirection();

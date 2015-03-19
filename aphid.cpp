@@ -101,6 +101,14 @@ void aphid::moveDirection(int board_x, int board_y) {
 	}
 };
 
+float aphid::getlBugKillProb(){
+	return this->lbugKillProb;
+}
+
+float aphid::getGiveBirthProb(){
+	return this->aphGiveBirthProb;
+}
+
 //-----------------UPDATES APHID OBJECT-------------------------
 void aphid::update(int board_x,int board_y){ 
 	int rand1 = rand() % 10;

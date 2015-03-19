@@ -16,9 +16,3 @@ int bug::getX() {
 int bug::getY() {
 	return this->pos[1];
 }
-
-/*pair<int,int> getPos() {
-	pair<int,int> tempPos(getX(),getY());
-	return tempPos;
-
-}*/
