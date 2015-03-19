@@ -10,7 +10,7 @@ manager::manager(){
 }
 
 //--------------------SETTING LOCAL VARIABLES--------------------
-//Takes parameters from main, sets the local variables, creates local vectors
+//Takes parameters from main, sets the local variables & creates local vectors
 manager::manager(vector<aphid> createAphids, vector<ladybug> createLadybugs, int board_x, int board_y){
 	this->board_x = board_x; //The width of the board
 	this->board_y = board_y; //The height of the board
@@ -46,6 +46,24 @@ void manager::printBoard(){
 				}
 
 			}
+			if (noAphids >= 1 && nolBugs >= 1){
+				//kill method( Pass in noAphids, noLbugs){
+				//kill method stored in bug.
+			/* bool AphKill:
+				checks number of aphids
+				if (== 1){ checks probability to kill lbug
+					if (prob == true) {
+						return true;
+					} else {return false; }
+				}
+				if AphKill (returns true) { iterator erase (*ai); }
+
+				*/
+			}
+			//if (noAphids > 1){ (*ai).AphReproduce() }
+			//if (noLBugs > 1){ (*li).lBugReproduce() }
+
+
 			if (noAphids >= 1 && nolBugs >= 1) {
 				cout << "|" << noAphids << "A" << nolBugs << "L";
 			}
@@ -72,12 +90,10 @@ void manager::updateGrid(){
 		(*AphIt).update(board_x,board_y);
 	}
 	for (vector<ladybug>::iterator lBugIt = this->lBugs.begin(); lBugIt != this->lBugs.end(); lBugIt++){
-		(*lBugIt).newPreferredDirection();
-		(*lBugIt).update();
+		//(*lBugIt).newPreferredDirection();
+		(*lBugIt).update(board_x,board_y);
 	}
-	//iterate through ladybugs
-	//call newPreferredDirection
-	//call update
+
 	printBoard();
 	cin.get();
 	updateGrid();

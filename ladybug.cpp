@@ -49,7 +49,26 @@ void ladybug::newPreferredDirection(){
 
 
 //-------------------UPDATES LADYBUG POSITION------------------
-void ladybug::moveDirection(){
+void ladybug::moveDirection(int board_x, int board_y){
+
+	//Checks if on the left border
+	if (this->pos[0] == 1) {
+		this->preferredDirection = 2;
+	}
+	//Checks if on the right border
+	if (this->pos[0] == (board_x - 1)){
+		this->preferredDirection = 4;
+	}
+	//Checks if on the bottom border
+	if (this->pos[1] == (board_y - 1)){
+		this->preferredDirection = 1;
+	}
+	//Checks if on the top border
+	if (this->pos[1] == 1){
+		this->preferredDirection = 3;
+	}
+
+
 	//------------------------NORTH-------------------------
 	if (this->preferredDirection == 1){
 		int subDirection = rand() % 3;
@@ -133,7 +152,7 @@ void ladybug::moveDirection(){
 }
 
 
-void ladybug::update(){
+void ladybug::update(int board_x, int board_y){
 	//Checking the probability of the bug moving
 	int tempMoveProb = rand() % 10;
 	if ((this->lBugMoveProb*10) >= tempMoveProb) {
@@ -143,10 +162,10 @@ void ladybug::update(){
 		if ((this->changeDirProb*10) >= tempMoveProb){
 			cout << "Ladybug changed direction" << endl;
 			newPreferredDirection();
-			moveDirection();
+			moveDirection(board_x,board_y);
 		}
 		else {
-			moveDirection();
+			moveDirection(board_x,board_y);
 		}
 	}
 	else {
