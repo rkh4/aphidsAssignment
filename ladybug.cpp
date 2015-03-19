@@ -243,19 +243,14 @@ void ladybug::update(int board_x, int board_y){
 	//Checking the probability of the bug moving
 	int tempMoveProb = rand() % 10;
 	if ((this->lBugMoveProb*10) >= tempMoveProb) {
-		cout << "Ladybug moved" << endl;
 		//Checking probability that preffered direction changes
 		tempMoveProb = rand() % 10;
 		if ((this->changeDirProb*10) >= tempMoveProb){
-			cout << "Ladybug changed direction" << endl;
 			newPreferredDirection();
 			moveDirection(board_x,board_y);
 		}
 		else {
 			moveDirection(board_x,board_y);
 		}
-	}
-	else {
-		cout << "Ladybug did not move" << endl;
 	}
 }

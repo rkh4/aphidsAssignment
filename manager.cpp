@@ -32,6 +32,9 @@ void manager::printBoard(){
 	int noAphids = 0;
 	int nolBugs = 0;
 
+	cout << "Current aphids: " << aphids.size() << endl;
+	cout << "Current ladybugs: " << lBugs.size() << endl;
+
 	//Prints the top line of the board
 	cout << endl << "---------------------------------------------------" << endl;
 	//Loops through each cell
@@ -91,13 +94,32 @@ void manager::printBoard(){
 
 			//-------------------------BOARD PRINTING---------------------
 			if (noAphids >= 1 && nolBugs >= 1) {
-				cout << "|" << noAphids << "A" << nolBugs << "L";
+				if (noAphids > 9) {
+					cout << "|~A";
+				}
+				else { cout << "|" << noAphids << "A"; 
+				}
+				if (nolBugs > 9) {
+					cout << "~L";
+				} 
+				else { cout << nolBugs << "L"; 
+				}
 			}
 			else if (noAphids >= 1) {
-				cout << "|" << noAphids << "A  ";
+				if (noAphids > 9) {
+					cout << "|~A  ";
+				}
+				else {
+					cout << "|" << noAphids << "A  ";
+				}
 			}
 			else if (nolBugs >= 1){
-				cout << "|  " << nolBugs << "L";
+				if (nolBugs > 9) {
+					cout << "|  ~L";
+				}
+				else {
+					cout << "|  " << nolBugs << "L";
+				}
 			}
 			else {
 				cout << "|    ";
