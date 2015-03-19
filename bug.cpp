@@ -1,5 +1,4 @@
 using namespace std;
-#include <utility>
 #include "bug.h"
 
 //Base class for Aphid & Ladybug

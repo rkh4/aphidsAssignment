@@ -2,8 +2,7 @@ using namespace std;
 #include "bug.h"
 #include "manager.h"
 #include <iostream>
-#include <time.h>
-#include <stdlib.h>
+//#include <stdlib.h>
 
 //Derived class of Bug
 
@@ -101,7 +100,7 @@ void aphid::moveDirection(int board_x, int board_y) {
 //Function that removes life turn-by-turn
 //	also checks if the bug is dead or not
 bool aphid::isDead(){
-	this->aphidLife -= 4;
+	this->aphidLife -= 1;
 	if (this->aphidLife <= 0){
 		this->aphidDead = true;
 		return true;

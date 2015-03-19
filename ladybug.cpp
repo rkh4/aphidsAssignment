@@ -1,9 +1,5 @@
 using namespace std;
 #include "bug.h"
-#include <stdlib.h>
-#include <iostream>
-#include <stdlib.h>
-
 
 //Derived class of bug
 
@@ -23,7 +19,6 @@ ladybug::ladybug(int Xpos, int Ypos, float moveProb, float changeDir, float aphK
 	this->lBugGiveBirthProb = giveBirthProb;
 	this->preferredDirection = preferredDirection;
 }
-
 
 //--------------SETS LADYBUG PREFERRED DIRECTION---------------
 void ladybug::newPreferredDirection(){
