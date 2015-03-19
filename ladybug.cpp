@@ -50,63 +50,97 @@ void ladybug::newPreferredDirection(){
 
 //-------------------UPDATES LADYBUG POSITION------------------
 void ladybug::moveDirection(int board_x, int board_y){
-
-	//Checks if on the left border
-	if (this->pos[0] == 1) {
-		this->preferredDirection = 2;
-	}
-	//Checks if on the right border
-	if (this->pos[0] == (board_x - 1)){
-		this->preferredDirection = 4;
-	}
-	//Checks if on the bottom border
-	if (this->pos[1] == (board_y - 1)){
-		this->preferredDirection = 1;
-	}
-	//Checks if on the top border
-	if (this->pos[1] == 1){
-		this->preferredDirection = 3;
-	}
-
-
 	//------------------------NORTH-------------------------
 	if (this->preferredDirection == 1){
 		int subDirection = rand() % 3;
 		switch (subDirection) {
 		case(0) :
-			//Decrement Y by 1, moving up
-			this->pos[1]--;
-			break;
+			//Check if on the top border
+			if (this->pos[1] <= 0) {
+				this->pos[1]++;
+				break;
+			}
+			else {
+				//Decrement Y by 1, moving up
+				this->pos[1]--;
+				break;
+			}
+			
 		case(1) :
-			//Decrement Y, Incriment X, move up-right
-			this->pos[1]--;
-			this->pos[0]++;
-			break;
+			//check if on top border, or right border
+			if (this->pos[1] <= 0 || this->pos[0] >= (board_x -1)) {
+				this->pos[1]++;
+				this->pos[0]--;
+				break;
+			}
+			else {
+				//Decrement Y, Incriment X, move up-right
+				this->pos[1]--;
+				this->pos[0]++;
+				break;
+			}
+	
 		case(2) :
-			//Move up-left
-			this->pos[1]--;
-			this->pos[0]--;
-			break;
+			//Check if on top border, or left border
+			if (this->pos[1] <= 0 || this->pos[0] <= 0) {
+				this->pos[1]++;
+				this->pos[0]++;
+				break;
+			}
+			else {
+				//Move up-left
+				this->pos[1]--;
+				this->pos[0]--;
+				break;
+			}
+			
 		}
 	}
+
 	//------------------------EAST--------------------------
 	else if (this->preferredDirection == 2){
 		int subDirection = rand() % 3;
 		switch (subDirection) {
 		case(0) :
-			//Move right
-			this->pos[0]++;
-			break;
+			//Check if on right border
+			if (this->pos[0] >= (board_y - 1)) {
+				this->pos[0]--;
+				break;
+			}
+			else {
+				//Move right
+				this->pos[0]++;
+				break;
+			}
+			
 		case(1) :
-			//Move down-right 
-			this->pos[1]++;
-			this->pos[0]++;
-			break;
+			//Check if on right border, or bottom border
+			if (this->pos[0] >= (board_y - 1) || this->pos[1] >= (board_x -1)) {
+				this->pos[0]--;
+				this->pos[1]--;
+				break;
+			}
+			else {
+				//Move down-right 
+				this->pos[1]++;
+				this->pos[0]++;
+				break;
+			}
+			
 		case(2) :
-			//Move up-right
-			this->pos[1]--;
-			this->pos[0]++;
-			break;
+			//Check if on right border, or top border
+			if (this->pos[0] >= (board_y - 1) || this->pos[1] <= 0) {
+				this->pos[0]--;
+				this->pos[1]++;
+				break;
+			}
+			else {
+				//Move up-right
+				this->pos[1]--;
+				this->pos[0]++;
+				break;
+			}
+			
 		}
 	}
 	//---------------------SOUTH----------------------------
@@ -114,19 +148,45 @@ void ladybug::moveDirection(int board_x, int board_y){
 		int subDirection = rand() % 3;
 		switch (subDirection) {
 		case(0) :
-			//Move down
-			this->pos[1]--;
-			break;
+			//Check if on right border, or top border
+			if (this->pos[1] >= (board_y -1)) {
+				this->pos[1]--;
+				break;
+			}
+			else {
+				//Move down
+				this->pos[1]++;
+				break;
+			}
+			
 		case(1) :
-			//Move down-right
-			this->pos[0]++;
-			this->pos[1]--;
-			break;
+			//Check if on right border, or bottom border
+			if (this->pos[0] >= (board_x-1) || this->pos[1] >= (board_y-1)) {
+				this->pos[0]--;
+				this->pos[1]--;
+				break;
+			}
+			else {
+				//Move down-right
+				this->pos[0]++;
+				this->pos[1]++;
+				break;
+			}
+			
 		case(2) :
-			//Move down-left
-			this->pos[0]--;
-			this->pos[1]--;
-			break;
+			//Check if on left border, or bottom border
+			if (this->pos[0] <= 0 || this->pos[1] >= (board_y - 1)) {
+				this->pos[0]++;
+				this->pos[1]--;
+				break;
+			}
+			else {
+				//Move down-left
+				this->pos[0]--;
+				this->pos[1]++;
+				break;
+			}
+			
 		}
 	}
 	//------------------------WEST--------------------------
@@ -134,23 +194,45 @@ void ladybug::moveDirection(int board_x, int board_y){
 		int subDirection = rand() % 3;
 		switch (subDirection) {
 		case(0) :
-			//Move left
-			this->pos[0]--;
-			break;
+			//Check if on left border
+			if (this->pos[0] <= 0) {
+				this->pos[0]++;
+			}
+			else {
+				//Move left
+				this->pos[0]--;
+				break;
+			}
+			
 		case(1) :
-			//Move up-left
-			this->pos[0]--;
-			this->pos[1]--;
-			break;
+			//Check if on left border, or top border
+			if (this->pos[0] <= 0 || this->pos[1] <= 0) {
+				this->pos[0]++;
+				this->pos[1]++;
+			}
+			else {
+				//Move up-left
+				this->pos[0]--;
+				this->pos[1]--;
+				break;
+			}
+			
 		case(2) :
-			//Move down-left
-			this->pos[0]--;
-			this->pos[1]--;
-			break;
+			//Check if on left border, or bottom border
+			if (this->pos[0] <= 0 || this->pos[1] >= (board_y - 1)) {
+				this->pos[0]++;
+				this->pos[1]--;
+			}
+			else {
+				//Move down-left
+				this->pos[0]--;
+				this->pos[1]++;
+				break;
+			}
+			
 		}
 	}
 }
-
 
 float ladybug::getGiveBirthProb(){
 	return this->lBugGiveBirthProb;

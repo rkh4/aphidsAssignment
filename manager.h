@@ -7,12 +7,12 @@ using namespace std;
 
 class manager {
 private:
-	int board_x = 0;
-	int board_y = 0;
-	vector<aphid> aphids;
-	vector<ladybug> lBugs;
-	vector<aphid> newAphids;
-	vector<ladybug> newlBugs;
+	int board_x = 0;			//Initialising the board width
+	int board_y = 0;			//Initialising the board height
+	vector<aphid> aphids;		//Vector of all aphids
+	vector<ladybug> lBugs;		//Vector of all ladybugs
+	vector<aphid> newAphids;	//Temporary vector of aphids for when reproduction takes place
+	vector<ladybug> newlBugs;	//Temporary ladybug vector, holding all newborns
 public:
 	manager(); //Default constructor
 	manager(vector<aphid> createAphids,vector<ladybug> createLadybugs, int board_x, int board_y);

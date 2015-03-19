@@ -101,10 +101,6 @@ void aphid::moveDirection(int board_x, int board_y) {
 	}
 };
 
-float aphid::getlBugKillProb(){
-	return this->lbugKillProb;
-}
-
 float aphid::getGiveBirthProb(){
 	return this->aphGiveBirthProb;
 }

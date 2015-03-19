@@ -2,7 +2,6 @@
 #include <string>
 #include <fstream>
 #include <vector>
-#include <chrono>
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -25,8 +24,10 @@ int ladybug_temp_pos[2]; //Arrat holding x and y coordinates
 //Temporary variable initialisation
 int board_x; //Width of the board
 int board_y; //Height of the board
-float aphMoveProb, lbugKillProb, helpKillProb, aphGiveBirthProb; //Temporary floats for the aphid config file
-float lbugMoveProb, changeDirProb, aphKillProb, lbugGiveBithProb; //Temporary floats for the ladybud config file
+float aphMoveProb, lbugKillProb, 
+	helpKillProb, aphGiveBirthProb; //Temporary floats for the aphid config file
+float lbugMoveProb, changeDirProb,
+	aphKillProb, lbugGiveBithProb; //Temporary floats for the ladybud config file
 
 
 //---------------------APHID FILE READ IN-------------------------
@@ -35,16 +36,20 @@ void readAphConfig(){
 	ifstream inputFileA; //File input object
 	inputFileA.open("aphConfig.txt");
 
+	//Checks the file opened correctly
 	if (inputFileA.is_open()){
 		cout << "File read successfully!" << endl;
 	} else {
 		cout << "Error reading file!" << endl;
 	};
 
-	inputFileA >> aphMoveProb;
-	inputFileA >> lbugKillProb;
-	inputFileA >> helpKillProb;
-	inputFileA >> aphGiveBirthProb;
+	inputFileA >> aphMoveProb;	//Probabilty of aphid moving
+	inputFileA >> lbugKillProb; //Probability to kill ladybug
+	inputFileA >> helpKillProb; //Increase in prob, based on number of aphids
+	inputFileA >> aphGiveBirthProb; //Probabilty of giving birth 
+
+	//Closes current file
+	inputFileA.close();
 };
 
 //--------------------LADYBUG FILE READ IN------------------------
@@ -53,6 +58,7 @@ void readlBugConfig(){
 	ifstream ifL;
 	ifL.open("lBugConfig.txt");
 
+	//Checks file opens correctly
 	if (ifL.is_open()){
 		cout << "File read successfully!" << endl;
 	}
@@ -64,6 +70,9 @@ void readlBugConfig(){
 	ifL >> changeDirProb; //Probability of changing direction
 	ifL >> aphKillProb; //Probability to kill an aphid
 	ifL >> lbugGiveBithProb; //Probability to reproduce
+
+	//Close current file
+	ifL.close();
 }
 
 //----------------------CONFIG FILE READ IN------------------------
@@ -81,17 +90,18 @@ void readSimConfig(){
 	}
 
 	//Read in board size
-	ifs >> board_x;
-	ifs >> board_y;
+	ifs >> board_x; //Width of the board
+	ifs >> board_y; //Height of the board
 
 
 	//----------------------APHIDS READ IN------------------------------
-	ifs >> aphid_count;
+	ifs >> aphid_count; //Amount of aphids in config file
 	int loop_count = 0; //Temporary loop variable
 	while (loop_count < aphid_count) {
-		//Creates temporary aphid object, fills parameters, and pushes to the vector
+		//Creates temporary aphid object, fills parameters, and pushes to the vector of aphids
 		ifs >> aphid_temp_pos[0] >> aphid_temp_pos[1]; //X then Y
-		aphid tmpAphid(aphid_temp_pos[0],aphid_temp_pos[1],aphMoveProb,lbugKillProb,helpKillProb, aphGiveBirthProb);
+		aphid tmpAphid(aphid_temp_pos[0],aphid_temp_pos[1],
+			aphMoveProb,lbugKillProb,helpKillProb, aphGiveBirthProb);
 		createAphids.push_back(tmpAphid);
 		loop_count++;
 	}
@@ -100,9 +110,11 @@ void readSimConfig(){
 	//-------------------LADYBUGS READ IN --------------------------------
 	ifs >> ladybug_count;
 	loop_count = 0; //Temoporary loop variable
+	//Creates temporary ladybug object, fills parameters, and pushes onto vector of ladybugs
 	while (loop_count < ladybug_count) {
 		ifs >> ladybug_temp_pos[0] >> ladybug_temp_pos[1];
-		ladybug tmpLBug(ladybug_temp_pos[0], ladybug_temp_pos[1], lbugMoveProb,changeDirProb,aphKillProb,lbugGiveBithProb);
+		ladybug tmpLBug(ladybug_temp_pos[0], ladybug_temp_pos[1], 
+			lbugMoveProb,changeDirProb,aphKillProb,lbugGiveBithProb);
 		createLBugs.push_back(tmpLBug);
 		loop_count++;
 	}
@@ -117,9 +129,9 @@ int main(){
 	readlBugConfig();
 	readSimConfig();
 	srand(time(0)); //Ensures rand fuction makes new random numbers every time
+	//Passes in both vectors, and the size of the board
 	manager myMan(createAphids, createLBugs, board_x, board_y);
 	myMan.printBoard();
 	myMan.updateGrid();
 	cin.get();
 }
-//this_thread::sleep_for(std::chrono::milliseconds(1000));

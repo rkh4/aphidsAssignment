@@ -27,29 +27,39 @@ void manager::printBoard(){
 	//Creates vector of vectors (2d board) the size the the read-in file defines
 	vector<string> x(board_x, "");
 	vector<vector<string> > board(board_y, x);
-	
+
+	//Variables hold how many of each bug, in the current cell
 	int noAphids = 0;
 	int nolBugs = 0;
 
-	//Loops, and cell checks
+	//Prints the top line of the board
 	cout << endl << "---------------------------------------------------" << endl;
+	//Loops through each cell
 	for (int i = 0; i < board.size(); i++) {
 		for (int j = 0; j < board[i].size(); j++){
+
+			//--------------------------APHIDS CHECK---------------------------------------
+			//Iterates through vector of aphids, checking if their coordinates match the current cell
 			for (vector<aphid>::iterator ai = aphids.begin(); ai != aphids.end(); ai++){
 				if ((*ai).getX() == i && (*ai).getY() == j){
-					noAphids++;
+					noAphids++; //..if so, they increase the number of aphids in that cell
+
+					//The chance for two aphids to give birth
 					if (noAphids > 1) {
 						float giveBirthProb = (*ai).getGiveBirthProb();
 						int randomChance = rand() % 10;
 						if ((giveBirthProb * 10) >= randomChance){
-							//Adds new aphid to a temporary array
-							aphid tempAphid((*ai).pos[0], (*ai).pos[1], (*ai).moveProb, (*ai).lbugKillProb, (*ai).helpKillProb, (*ai).aphGiveBirthProb);
+							//Adds the new aphid to a temporary array to be added later
+							aphid tempAphid((*ai).pos[0], (*ai).pos[1], (*ai).moveProb,
+								(*ai).lbugKillProb, (*ai).helpKillProb, (*ai).aphGiveBirthProb);
 							newAphids.push_back(tempAphid);
 						}
-						
+
 					}
 				}
 			}
+			//--------------------------LADYBUGS CHECK---------------------------------------
+			//Iterates through vector of ladybugs, checking coordinates against current cell
 			for (vector<ladybug>::iterator li = lBugs.begin(); li != lBugs.end(); li++){
 				if ((*li).getX() == i && (*li).getY() == j){
 					nolBugs++;
@@ -59,13 +69,14 @@ void manager::printBoard(){
 						if ((giveBirthProb * 10) >= randomChance){
 							cout << "new lbug born!";
 							//Adds new aphid to a temporary array
-							ladybug templBug((*li).pos[0], (*li).pos[1], (*li).lBugMoveProb, (*li).changeDirProb, (*li).aphKillProb, (*li).lBugGiveBirthProb);
-							newlBugs.push_back(templBug);
+							//ladybug templBug((*li).pos[0], (*li).pos[1], (*li).lBugMoveProb, (*li).changeDirProb, (*li).aphKillProb, (*li).lBugGiveBirthProb);
+							//newlBugs.push_back(templBug);
+							//}
+
 						}
-						
+
 					}
 				}
-
 			}
 			//if (noAphids >= 1 && nolBugs >= 1){
 				//kill method( Pass in noAphids, noLbugs){
@@ -81,7 +92,8 @@ void manager::printBoard(){
 
 				if AphKill (returns true) { iterator erase (*ai); }
 				*/
-			
+
+			//-------------------------BOARD PRINTING---------------------
 			if (noAphids >= 1 && nolBugs >= 1) {
 				cout << "|" << noAphids << "A" << nolBugs << "L";
 			}
@@ -118,7 +130,7 @@ void manager::updateGrid(){
 	for (vector<ladybug>::iterator newlBugIt = newlBugs.begin(); newlBugIt != newlBugs.end(); newlBugIt++){
 		newlBugs.push_back(*newlBugIt);
 	}
-	newlBugs.clear();
+	newlBugs.clear(); //Clears the vector ready for the next turn
 
 	//Temporary vector, holds the values of new aphids, ready to be added next turn
 	for (vector<aphid>::iterator newAphIt = newAphids.begin(); newAphIt != newAphids.end(); newAphIt++){

@@ -9,10 +9,10 @@ class bug {
 private:
 public:
 	bug();
-	int pos[2]; //X then Y
-	int getX();
-	int getY();
-	void update();
+	int pos[2]; //Position, X then Y coordinate
+	int getX(); //Returns the X coordinate
+	int getY(); //Returns the Y coordinate
+	void update(); //updates the object
 	//~bug(); //Destructor
 };
 
@@ -21,14 +21,16 @@ class aphid : public bug {
 private:
 	
 public:
-	float moveProb = 0.0;
-	float lbugKillProb = 0.0;
-	float helpKillProb = 0.0;
-	float aphGiveBirthProb = 0.0;
+	//Variable initialisation
+	float moveProb = 0.0; //Probability that aphid will move
+	float lbugKillProb = 0.0; //Probability that it will kill a ladybug
+	float helpKillProb = 0.0; //Increase in probability depending on how many aphids
+	float aphGiveBirthProb = 0.0; //Probability aphid will reproduce
+
+	//Methods
 	aphid(); //Default constructor
 	aphid(int Xpos, int Ypos, float moveProb, float lbugKillProb, float helpKillProb, float aphGiveBirthProb);
-	float getlBugKillProb(); //pointless now?  check
-	float getGiveBirthProb(); 
+	float getGiveBirthProb(); //Returns the probability of reproducing
 	void moveDirection(int board_x, int board_y);
 	void update(int board_x, int board_y);
 	//~aphid(); //Destructor
@@ -38,16 +40,19 @@ public:
 //------------------LADYBUG CLASS-----------------------
 class ladybug : public bug {
 private:
-	int preferredDirection = 0;
+	int preferredDirection = 0; //North/ East/ South/ West
 public:
-	float lBugMoveProb = 0.0;
-	float changeDirProb = 0.0;
-	float aphKillProb = 0.0;
-	float lBugGiveBirthProb = 0.0;
+	//Variable Initialisation
+	float lBugMoveProb = 0.0;	//Probability of moving
+	float changeDirProb = 0.0;	//Probability that the preferred direction will change
+	float aphKillProb = 0.0;	//Probability of killing aphid
+	float lBugGiveBirthProb = 0.0; //Probability of giving birth
+
+	//Methods
 	ladybug(); //Defeault constructor
 	ladybug(int Xpos, int Ypos, float moveProb, float changeDir, float aphKill, float giveBirthProb);
-	void newPreferredDirection();
-	float getGiveBirthProb();
+	void newPreferredDirection(); 
+	float getGiveBirthProb(); //Returns the probability of giving birth
 	void moveDirection(int board_x, int board_y);
 	void update(int board_x, int board_y);
 	//~ladybug(); //Destructor
